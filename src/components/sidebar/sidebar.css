@@ -1,9 +1,22 @@
 .sidebar {
     flex: 1;
-    height: calc(100vh - 50px);
+    height: calc(100%);
     background-color: #232323;
     position: sticky;
     top: 50px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232323;
+  border-radius: 15px;
 }
 
 .sidebarWrapper {

@@ -1,0 +1,9 @@
+.eloChartTitle {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.eloChart {
+    padding: 20px;
+}

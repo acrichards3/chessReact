@@ -1,7 +1,7 @@
 .topbar {
   width: 100%;
   height: 50px;
-  background-color: white;
+  background-color: #232323;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -18,7 +18,7 @@
 .logo {
   font-weight: bold;
   font-size: 30px;
-  color: #343434;
+  color: white;
   cursor: pointer;
 }
 
@@ -31,6 +31,7 @@
   position: relative;
   cursor: pointer;
   margin-right: 10px;
+  color: white;
 }
 
 .topIconBadge {
@@ -49,10 +50,14 @@
 
 .infoIcon {
   color: mediumblue;
+  background: white;
+  border-radius: 70%;
 }
 
 .activityIcon {
   color: mediumseagreen;
+  background-color: white;
+  border-radius: 70%;
 }
 
 .topAvatar{
