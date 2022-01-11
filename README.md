@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### What to Install
+
+React-scripts:              npm i react-scripts               VERSION:  5.0.0
+Victory Charts:             npm i victory                     VERSION:  35.6.1
+Chess Web API:              npm i chess-web-api               VERSION:  1.1.2
+NPM Version (1/11/2022):    npm install -g npm                VERSION:  6.14.14
+Node Version (1/11/2022):   go to node.js site to install     VERSION:  14.17.5
