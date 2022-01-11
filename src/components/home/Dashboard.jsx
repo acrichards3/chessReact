@@ -1,10 +1,14 @@
 import React from "react";
 import EloChart from "./EloChart";
+import SearchUser from "./SearchUser";
 import "./dashboard.css";
 
 export default function Dashboard() {
   return (
     <div>
+      <div className="enterUser">
+        <SearchUser />
+      </div>
       <div className="container">
         <div className="row">
           <div className="col eloChart">
