@@ -1,0 +1,15 @@
+VERSION 0.1.1 {
+
+    IMPROVEMENTS: 
+
+    - Added PatchNotes.txt 
+    - Fixed Bug where sidebar was massive on XL viewports
+    - Typing in input field will console.log basic info of Chess.com user 
+
+
+    EXISTING BUGS: 
+
+    - 2 errors in console on refresh
+    - state gets logged twice
+
+}
