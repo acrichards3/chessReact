@@ -1,26 +1,22 @@
 import React from "react";
-import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./searchUser.css";
 
 export default function SearchUser() {
   return (
-    <div className="chessUser">
-      <Form>
-        <FormGroup>
-          <Label>Username</Label>
-          <Input
-            className="chessUser"
-            bsSize="lg"
-            autoComplete="off"
-            name="chessUsername"
-            id="chessUsername"
-            placeholder="Enter Chess.com Username"
-          />
-          <Button type="submit" color="primary">
-            Search
-          </Button>
-        </FormGroup>
-      </Form>
+    <div className="container">
+      <div className="row">
+        <Form>
+          <FormGroup>
+            <div className="col-lg-4 bar">
+              <Input placeholder="Chess.com Username" />
+              <Button color="primary" type="submit">
+                Submit
+              </Button>
+            </div>
+          </FormGroup>
+        </Form>
+      </div>
     </div>
   );
 }

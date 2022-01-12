@@ -8,10 +8,14 @@ function App() {
   return (
     <div>
       <Topbar />
-      <div className="container">
+      <div className="sidenav">
         <Sidebar />
-        <div className="others">
-          <Dashboard />
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <Dashboard />
+            </div>
+          </div>
         </div>
       </div>
     </div>

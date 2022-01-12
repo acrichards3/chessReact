@@ -1,4 +1,9 @@
-.chessUser {
-    margin: auto;
+.container {
     padding-top: 10px;
+}
+
+.bar {
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }
