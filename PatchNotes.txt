@@ -13,3 +13,19 @@ VERSION 0.1.1 {
     - state gets logged twice
 
 }
+
+VERSION 0.1.2 {
+
+    IMPROVEMENTS:
+
+    - Chess.com user will only be console logged once the Update button is clicked.
+    - Fixed new bug where clicking update more than once would grab info for Chess.com user: "Update"
+    - Fixed bug where state was being logged twice
+    - Text Input no longer does anything when hitting enter
+
+
+    EXISTING BUGS:
+
+    - 2 errors in console on refresh
+
+}

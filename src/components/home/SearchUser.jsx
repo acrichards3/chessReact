@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
-import Player from '../../data/setPlayer';
-import './searchUser.css';
+import React, { useState } from "react";
+import { Form, FormGroup, Input } from "reactstrap";
+import Player from "../../data/setPlayer";
+import "./searchUser.css";
 
 export default function SearchUser() {
-  const [name, setName] = useState('hikaru');
+  const [name, setName] = useState("hikaru");
 
   function handleChange(e) {
-    setName(e.target.value);
+    if (e.target.value === "Update") {
+      Player(name);
+    } else {
+        setter();
+    }
+    function setter() {
+      setName(e.target.value);
+    }
   }
 
-  Player(name);
+  function handleKeyPress(e) {
+      if (e.key === "Enter") {
+          e.preventDefault();
+      }
+  }
 
   return (
     <div className="container">
@@ -22,14 +33,19 @@ export default function SearchUser() {
                 id="userInput"
                 placeholder="Chess.com Username"
                 type="text"
+                autoComplete="off"
                 onChange={handleChange}
+                onKeyPress={handleKeyPress}
               />
-              <Button color="primary" type="submit">
-                Submit
-              </Button>
+              <Input type="button" value="Update" onClick={handleChange} />
             </div>
           </FormGroup>
         </Form>
+        <div className="col">
+          <h4>
+            Displaying info for Chess.com user: <strong>{name}</strong>
+          </h4>
+        </div>
       </div>
     </div>
   );
