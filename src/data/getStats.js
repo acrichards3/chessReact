@@ -1,11 +1,10 @@
 const ChessWebAPI = require("chess-web-api");
 const chessAPI = new ChessWebAPI();
 
-export default function Player(user) {
-
-  chessAPI.getPlayer(user).then(
+export default function getStats() {
+  chessAPI.getPlayerMonthlyArchives("Acricha3").then(
     function (response) {
-      console.log("Player Profile", response.body);
+      console.log("Player Stats", response.body);
     },
     function (err) {
       console.error(err);

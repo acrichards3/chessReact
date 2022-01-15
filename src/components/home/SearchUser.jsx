@@ -4,23 +4,22 @@ import Player from "../../data/setPlayer";
 import "./searchUser.css";
 
 export default function SearchUser() {
-  const [name, setName] = useState("hikaru");
+  const [name, setName] = useState("Hikaru");
+  const [stored, setStored] = useState("Hikaru");
 
   function handleChange(e) {
     if (e.target.value === "Update") {
       Player(name);
+      setStored(name);
     } else {
-        setter();
-    }
-    function setter() {
       setName(e.target.value);
     }
   }
 
   function handleKeyPress(e) {
-      if (e.key === "Enter") {
-          e.preventDefault();
-      }
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
   }
 
   return (
@@ -37,14 +36,21 @@ export default function SearchUser() {
                 onChange={handleChange}
                 onKeyPress={handleKeyPress}
               />
-              <Input type="button" value="Update" onClick={handleChange} />
+              <Input
+                id="updateBtn"
+                type="button"
+                value="Update"
+                onClick={handleChange}
+              />
             </div>
           </FormGroup>
         </Form>
         <div className="col">
-          <h4>
-            Displaying info for Chess.com user: <strong>{name}</strong>
-          </h4>
+          <div className="displayName">
+            <h4>
+              Displaying info for Chess.com user: <strong>{stored}</strong>
+            </h4>
+          </div>
         </div>
       </div>
     </div>

@@ -1,9 +1,14 @@
 import React from "react";
-import EloChart from "./EloChart";
+import EloChart from "./charts/EloChart";
+import WhiteWinrate from "./charts/WhiteWinrate";
+import BlackWinrate from "./charts/BlackWinrate";
 import SearchUser from "./SearchUser";
+import getStats from "../../data/getStats";
 import "./dashboard.css";
 
 export default function Dashboard() {
+  getStats();
+
   return (
     <div>
       <div className="enterUser">
@@ -11,9 +16,14 @@ export default function Dashboard() {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col eloChart">
-            <h4 className="eloChartTitle">Elo Gain / Loss (Last 10 Games)</h4>
+          <div className="col-lg-4 eloChart">
             <EloChart />
+          </div>
+          <div className="col-lg-4 winrateChart">
+            <WhiteWinrate />
+          </div>
+          <div className="col-lg-4 winrateChart">
+            <BlackWinrate />
           </div>
         </div>
       </div>

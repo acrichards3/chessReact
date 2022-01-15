@@ -11,7 +11,6 @@ VERSION 0.1.1 {
 
     - 2 errors in console on refresh
     - state gets logged twice
-
 }
 
 VERSION 0.1.2 {
@@ -27,5 +26,22 @@ VERSION 0.1.2 {
     EXISTING BUGS:
 
     - 2 errors in console on refresh
+}
 
+VERSION 0.1.3 {
+
+    IMPROVEMENTS:
+
+    - Diplaying info for "User" now only updates when clicking the update button
+    - Display info for "User" formatting
+    - Set up getStats file (console logs links to access required data for charts in JSON format)
+    - Created white winrate component 
+    - Created black winrate component
+    - Lots of new styling and other visual changes to components
+
+
+    EXISTING BUGS:
+
+    - 2 errors in console on refresh
+    - EloChart component is smaller than winrate components
 }

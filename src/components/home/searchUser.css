@@ -7,3 +7,9 @@
     display: flex;
     justify-content: center;
 }
+
+.displayName {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
