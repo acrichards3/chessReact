@@ -1,20 +1,4 @@
-.chartTitle {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-}
-
 .enterUser {
     display: flex;
     align-items: center;
-}
-
-.eloChart {
-    padding: 20px;
-}
-
-
-.winrateChart {
-    padding: 20px;
-    margin: auto;
 }
