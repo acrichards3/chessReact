@@ -1,6 +1,7 @@
 import React from "react";
 import { VictoryChart, VictoryLine } from "victory";
 import { Button, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
+import "./eloChart.css";
 
 export default function EloChart() {
   return (
@@ -9,7 +10,7 @@ export default function EloChart() {
         <Card body outline color="secondary" className="text-center">
           <CardHeader tag="h4">Elo Change (Last 10 Games)</CardHeader>
           <CardBody>
-            <VictoryChart>
+            <VictoryChart height={450}>
               <VictoryLine
                 data={[
                   { x: 1, y: 840 },
@@ -26,7 +27,7 @@ export default function EloChart() {
                 interpolation="natural"
                 style={{
                   data: {
-                    stroke: "#1261A0",
+                    stroke: '#1261A0',
                   },
                 }}
                 animate={{

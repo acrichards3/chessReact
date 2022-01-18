@@ -1,10 +1,11 @@
-import React from "react";
-import EloChart from "./charts/EloChart";
-import WhiteWinrate from "./charts/WhiteWinrate";
-import BlackWinrate from "./charts/BlackWinrate";
-import SearchUser from "./SearchUser";
-import getStats from "../../data/getStats";
-import "./dashboard.css";
+import React from 'react';
+import EloChart from './charts/EloChart';
+import WhiteWinrate from './charts/WhiteWinrate';
+import BlackWinrate from './charts/BlackWinrate';
+import Rank from './ranks/Rank';
+import SearchUser from './SearchUser';
+import getStats from '../../data/getStats';
+import './dashboard.css';
 
 export default function Dashboard() {
   getStats();
@@ -24,6 +25,11 @@ export default function Dashboard() {
           </div>
           <div className="col-lg-4 winrateChart">
             <BlackWinrate />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-4">
+            <Rank />
           </div>
         </div>
       </div>

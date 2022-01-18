@@ -43,3 +43,16 @@ VERSION 0.1.3 {
     - 2 errors in console on refresh
     - EloChart component is smaller than winrate components
 }
+VERSION 0.1.4 {
+
+    IMPROVEMENTS: 
+
+    - Elo chart is the same height as the pie charts
+    - Created Current Rank Card
+
+
+    EXISTING BUGS: 
+
+    - 2 errors in console on refresh
+    - Find out how to import images to rank file
+}
