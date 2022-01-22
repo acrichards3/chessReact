@@ -49,10 +49,23 @@ VERSION 0.1.4 {
 
     - Elo chart is the same height as the pie charts
     - Created Current Rank Card
+    - Created images folder and imported ranks
 
 
     EXISTING BUGS: 
 
+    - 2 errors in console on refresh
+    - Find out how to import images to rank file
+}
+VERSION 0.1.5 {
+
+    IMPROVEMENTS: 
+
+    - getStats hooked up to Update button on home page 
+    - getStats now console logs the last two months of player stats
+
+
+    EXISTING BUGS / THINGS TO FIX: 
     - 2 errors in console on refresh
     - Find out how to import images to rank file
 }
