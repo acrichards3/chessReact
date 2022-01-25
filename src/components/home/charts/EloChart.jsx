@@ -10,7 +10,7 @@ export default function EloChart() {
         <Card body outline color="secondary" className="text-center">
           <CardHeader tag="h4">Elo Change (Last 10 Games)</CardHeader>
           <CardBody>
-            <VictoryChart height={450}>
+            <VictoryChart height={400}>
               <VictoryLine
                 data={[
                   { x: 1, y: 840 },

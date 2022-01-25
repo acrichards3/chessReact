@@ -7,12 +7,17 @@ export default function Stats(user) {
       const arr = response.body.archives;
       const recents = [];
 
-        for (let i=0; i < arr.length; i++) {
-          if (i === arr.length-1 || i === arr.length-2) {
-            recents.push(arr[i]);
-          }
+      for (let i = 0; i < arr.length; i++) {
+        if (i === arr.length - 1 || i === arr.length - 2) {
+          recents.push(arr[i]);
         }
-      console.log("Player Stats", recents);
+      }
+
+      function getJson() {
+        return fetch(recents).then((response) => response.json());
+      }
+
+      console.log("Player Stats", getJson());
     },
     function (err) {
       console.error(err);
