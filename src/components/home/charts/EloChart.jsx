@@ -1,7 +1,7 @@
-import React from "react";
-import { VictoryChart, VictoryLine } from "victory";
-import { Button, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
-import "./eloChart.css";
+import React from 'react';
+import { VictoryChart, VictoryLine } from 'victory';
+import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import './eloChart.css';
 
 export default function EloChart() {
   return (

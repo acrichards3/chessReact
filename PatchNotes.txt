@@ -73,11 +73,25 @@ VERSION 0.1.6 {
 
     IMPROVEMENTS: 
 
-    - can now console log games and other stats from player when a name is typed into the search bar
+    - Can now console log games and other stats from player when a name is typed into the search bar
+    - Can now track changes in elo across rapid, blitz, bullet, and daily games. (Stored in arrays)
 
 
     EXISTING BUGS / THINGS TO FIX: 
-    - Figure out how to console log the JSON data from both this month & last month not just one or the other
+    - 2 errors in console on refresh
+    - Find out how to import images to rank file
+}
+VERSION 0.1.7 {
+
+    IMPROVEMENTS: 
+
+    - Can now track changes in elo across rapid, blitz, bullet, and daily games. (Stored in arrays)
+    - Can track overall winrates, wins, losses, and draws for both white and black.
+    - Can track winrates, wins, losses, and draws for both white and black in Rapid, Blitz, Bullet, and Daily.
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+    - Find a way to combine all games into one very large object
     - 2 errors in console on refresh
     - Find out how to import images to rank file
 }

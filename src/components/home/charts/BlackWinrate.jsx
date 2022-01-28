@@ -1,6 +1,6 @@
-import React from "react";
-import { VictoryPie } from "victory";
-import { Button, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
+import React from 'react';
+import { VictoryPie } from 'victory';
+import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 
 export default function BlackWinrate() {
   return (
@@ -13,11 +13,11 @@ export default function BlackWinrate() {
               <CardBody>
                 <VictoryPie
                   data={[
-                    { x: "Won", y: 16 },
-                    { x: "Lost", y: 13 },
-                    { x: "Drew", y: 1 },
+                    { x: 'Won', y: 16 },
+                    { x: 'Lost', y: 13 },
+                    { x: 'Drew', y: 1 },
                   ]}
-                  colorScale={["#3c89d0", "#ff2626", "grey"]}
+                  colorScale={['#3c89d0', '#ff2626', 'grey']}
                   animate={{
                     duration: 2000,
                     onLoad: { duration: 1500 },

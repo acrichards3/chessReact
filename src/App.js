@@ -1,7 +1,7 @@
-import Topbar from "./components/topbar/Topbar";
-import Sidebar from "./components/sidebar/Sidebar";
-import Dashboard from "./components/home/Dashboard";
-import "./app.css";
+import Topbar from './components/topbar/Topbar';
+import Sidebar from './components/sidebar/Sidebar';
+import Dashboard from './components/home/Dashboard';
+import './app.css';
 
 function App() {
   return (
