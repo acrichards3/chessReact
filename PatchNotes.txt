@@ -95,3 +95,19 @@ VERSION 0.1.7 {
     - 2 errors in console on refresh
     - Find out how to import images to rank file
 }
+VERSION 0.1.8 {
+
+    IMPROVEMENTS: 
+
+    - All games shown for past 3 months
+    - Added openings.js file which contains an array of objects with the 120 most popular openings
+    - Created getOpenings.js file
+    - In openings.js initialized all values to 0 which will be updated depending if certain conditions are met
+    - Created functions in getOpenings.js to increase counters in openings.js
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - 2 errors in console on refresh
+    - Find out how to import images to rank file
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, FormGroup, Input } from "reactstrap";
 import Player from "../../data/setPlayer";
 import Stats from "../../data/getStats";
+import Openings from "../../data/getOpenings";
 import "./searchUser.css";
 
 export default function SearchUser() {
@@ -12,6 +13,7 @@ export default function SearchUser() {
     if (e.target.value === "Update") {
       Player(name);
       Stats(name);
+      Openings(name);
       setStored(name);
     } else {
       setName(e.target.value);
@@ -50,7 +52,7 @@ export default function SearchUser() {
         <div className="col">
           <div className="displayName">
             <h4>
-              Displaying info for Chess.com user: <strong>{stored}</strong> (Last 30 Days)
+              Displaying info for Chess.com user: <strong>{stored}</strong> (Last 90 Days)
             </h4>
           </div>
         </div>

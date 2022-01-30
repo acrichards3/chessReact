@@ -4,13 +4,17 @@ const chessAPI = new ChessWebAPI();
 export default function Stats(user) {
   chessAPI
     .getPlayerMonthlyArchives(user)
-    .then(function (response) {
+    .then(async function (response) {
       const arr = response.body.archives;
       const recents = [];
       const results = [];
 
       for (let i = 0; i < arr.length; i++) {
-        if (i === arr.length - 1 || i === arr.length - 2) {
+        if (
+          i === arr.length - 1 ||
+          i === arr.length - 2 ||
+          i === arr.length - 3
+        ) {
           recents.push(arr[i]);
         }
       }
@@ -24,14 +28,16 @@ export default function Stats(user) {
         results.push(getJson(i));
       }
 
-      return results[0]; // Get rid of pos 0
+      const games1 = (await results[0]).games.concat((await results[1]).games);
+      const games2 = games1.concat((await results[2]).games);
+      return games2;
     })
-    .then(function (response) {
+    .then(function (games) {
       const rapidRating = [];
       const blitzRating = [];
       const bulletRating = [];
       const dailyRating = [];
-      const numOfGames = response.games.length;
+      const numOfGames = games.length;
 
       let blackGamesPlayedOverall = 0;
       let whiteGamesPlayedOverall = 0;
@@ -68,16 +74,16 @@ export default function Stats(user) {
       let whiteWinsDaily = 0;
       let whiteDrawsDaily = 0;
 
-      console.log(response);
+      console.log(games);
 
-      for (let i = 0; i < response.games.length; i++) {
-        const currentGame = response.games[i];
-        const blackRating = response.games[i].black.rating;
-        const whiteRating = response.games[i].white.rating;
-        const blackResult = response.games[i].black.result;
-        const whiteResult = response.games[i].white.result;
-        const blackUser = response.games[i].black.username;
-        const whiteUser = response.games[i].white.username;
+      for (let i = 0; i < games.length; i++) {
+        const currentGame = games[i];
+        const blackRating = games[i].black.rating;
+        const whiteRating = games[i].white.rating;
+        const blackResult = games[i].black.result;
+        const whiteResult = games[i].white.result;
+        const blackUser = games[i].black.username;
+        const whiteUser = games[i].white.username;
 
         if (blackUser === user && currentGame.rated) {
           // checks if user played as black and if game is rated
@@ -364,9 +370,7 @@ export default function Stats(user) {
         'Black Losses: ',
         blackLossesRapid,
         'White Losses: ',
-        whiteLossesRapid,
-        'Total Number of Games: ',
-        numOfGames
+        whiteLossesRapid
       );
       console.log(
         'BLITZ',
@@ -385,9 +389,7 @@ export default function Stats(user) {
         'Black Losses: ',
         blackLossesBlitz,
         'White Losses: ',
-        whiteLossesBlitz,
-        'Total Number of Games: ',
-        numOfGames
+        whiteLossesBlitz
       );
       console.log(
         'BULLET',
@@ -406,9 +408,7 @@ export default function Stats(user) {
         'Black Losses: ',
         blackLossesBullet,
         'White Losses: ',
-        whiteLossesBullet,
-        'Total Number of Games: ',
-        numOfGames
+        whiteLossesBullet
       );
       console.log(
         'DAILY',
@@ -427,9 +427,7 @@ export default function Stats(user) {
         'Black Losses: ',
         blackLossesDaily,
         'White Losses: ',
-        whiteLossesDaily,
-        'Total Number of Games: ',
-        numOfGames
+        whiteLossesDaily
       );
     })
     .catch(function (err) {
