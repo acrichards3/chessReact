@@ -1000,7 +1000,7 @@ export const OPENINGS = [
   },
   {
     id: 37,
-    name: 'Scendinavian Defense: Modern Variation',
+    name: 'Scandinavian Defense: Modern Variation',
     count: 0,
     whiteCount: 0,
     blackCount: 0,
@@ -1999,7 +1999,7 @@ export const OPENINGS = [
   },
   {
     id: 74,
-    name: "King's Indian DefenseL Normal Variation",
+    name: "King's Indian Defense: Normal Variation",
     count: 0,
     whiteCount: 0,
     blackCount: 0,
@@ -2566,7 +2566,7 @@ export const OPENINGS = [
   },
   {
     id: 95,
-    name: 'Scoth Game: Classical Variation',
+    name: 'Scotch Game: Classical Variation',
     count: 0,
     whiteCount: 0,
     blackCount: 0,
@@ -3240,7 +3240,7 @@ export const OPENINGS = [
     dailyDraws: 0,
   },
   {
-    id: 120,
+    id: 999,
     name: 'Other Openings',
     count: 0,
     whiteCount: 0,

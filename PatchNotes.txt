@@ -111,3 +111,18 @@ VERSION 0.1.8 {
     - 2 errors in console on refresh
     - Find out how to import images to rank file
 }
+VERSION 0.1.9 {
+
+    IMPROVEMENTS: 
+
+    - Can now view all information regarding openings for any player within the last 3 months
+    - Fixed issue where updating to a new player would add opening values from previous player instead of resetting them
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Refactor Sidebar.jsx
+    - Refactor getStats.jsx
+    - 2 errors in console on refresh
+    - Find out how to import images to rank file
+}
