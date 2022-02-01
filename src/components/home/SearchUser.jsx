@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Form, FormGroup, Input } from "reactstrap";
-import Player from "../../data/setPlayer";
-import Stats from "../../data/getStats";
-import Openings from "../../data/getOpenings";
-import "./searchUser.css";
+import React, { useState } from 'react';
+import { Form, FormGroup, Input } from 'reactstrap';
+import Player from '../../data/setPlayer';
+import Stats from '../../data/getStats';
+import Openings from '../../data/getOpenings';
+import './searchUser.css';
 
 export default function SearchUser() {
-  const [name, setName] = useState("Hikaru");
-  const [stored, setStored] = useState("Hikaru");
+  const [name, setName] = useState('Hikaru');
+  const [stored, setStored] = useState('Hikaru');
 
   function handleChange(e) {
-    if (e.target.value === "Update") {
+    if (e.target.value === 'Update') {
       Player(name);
       Stats(name);
       Openings(name);
@@ -21,7 +21,7 @@ export default function SearchUser() {
   }
 
   function handleKeyPress(e) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
     }
   }
@@ -52,7 +52,8 @@ export default function SearchUser() {
         <div className="col">
           <div className="displayName">
             <h4>
-              Displaying info for Chess.com user: <strong>{stored}</strong> (Last 90 Days)
+              Displaying info for Chess.com user: <strong>{stored}</strong>{' '}
+              (Last 90 Days)
             </h4>
           </div>
         </div>

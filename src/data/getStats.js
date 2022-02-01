@@ -85,7 +85,9 @@ export default function Stats(user) {
         const blackUser = games[i].black.username;
         const whiteUser = games[i].white.username;
 
-        if (blackUser === user && currentGame.rated) {
+        
+
+        if (blackUser.toUpperCase() === user.toUpperCase() && currentGame.rated) {
           // checks if user played as black and if game is rated
           blackGamesPlayedOverall++;
           if (currentGame.time_class === 'rapid') {
@@ -188,7 +190,7 @@ export default function Stats(user) {
             blackDrawsDaily++;
           }
         }
-        if (whiteUser === user && currentGame.rated) {
+        if (whiteUser.toUpperCase() === user.toUpperCase() && currentGame.rated) {
           // checks if user played as white and if game is rated
           whiteGamesPlayedOverall++;
           if (currentGame.time_class === 'rapid') {
@@ -334,99 +336,99 @@ export default function Stats(user) {
 
       console.log(
         'OVERALL',
-        'Black Winrate: ',
+        'Black Winrate:',
         blackWinRateOverall.toFixed(2),
-        'White Winrate: ',
+        'White Winrate:',
         whiteWinRateOverall.toFixed(2),
-        'Black Wins: ',
+        'Black Wins:',
         blackWinsOverall,
-        'White Wins: ',
+        'White Wins:',
         whiteWinsOverall,
-        'Black Draws: ',
+        'Black Draws:',
         blackDrawsOverall,
-        'White Draws: ',
+        'White Draws:',
         whiteDrawsOverall,
-        'Black Losses: ',
+        'Black Losses:',
         blackLossesOverall,
-        'White Losses: ',
+        'White Losses:',
         whiteLossesOverall,
-        'Total Number of Games: ',
+        'Total Number of Games:',
         numOfGames
       );
       console.log(
         'RAPID',
-        'Black Winrate: ',
+        'Black Winrate:',
         blackWinRateRapid.toFixed(2),
-        'White Winrate: ',
+        'White Winrate:',
         whiteWinRateRapid.toFixed(2),
-        'Black Wins: ',
+        'Black Wins:',
         blackWinsRapid,
-        'White Wins: ',
+        'White Wins:',
         whiteWinsRapid,
-        'Black Draws: ',
+        'Black Draws:',
         blackDrawsRapid,
-        'White Draws: ',
+        'White Draws:',
         whiteDrawsRapid,
-        'Black Losses: ',
+        'Black Losses:',
         blackLossesRapid,
-        'White Losses: ',
+        'White Losses:',
         whiteLossesRapid
       );
       console.log(
         'BLITZ',
-        'Black Winrate: ',
+        'Black Winrate:',
         blackWinRateBlitz.toFixed(2),
-        'White Winrate: ',
+        'White Winrate:',
         whiteWinRateBlitz.toFixed(2),
-        'Black Wins: ',
+        'Black Wins:',
         blackWinsBlitz,
-        'White Wins: ',
+        'White Wins:',
         whiteWinsBlitz,
-        'Black Draws: ',
+        'Black Draws:',
         blackDrawsBlitz,
-        'White Draws: ',
+        'White Draws:',
         whiteDrawsBlitz,
-        'Black Losses: ',
+        'Black Losses:',
         blackLossesBlitz,
-        'White Losses: ',
+        'White Losses:',
         whiteLossesBlitz
       );
       console.log(
         'BULLET',
-        'Black Winrate: ',
+        'Black Winrate:',
         blackWinRateBullet.toFixed(2),
-        'White Winrate: ',
+        'White Winrate:',
         whiteWinRateBullet.toFixed(2),
-        'Black Wins: ',
+        'Black Wins:',
         blackWinsBullet,
-        'White Wins: ',
+        'White Wins:',
         whiteWinsBullet,
-        'Black Draws: ',
+        'Black Draws:',
         blackDrawsBullet,
-        'White Draws: ',
+        'White Draws:',
         whiteDrawsBullet,
-        'Black Losses: ',
+        'Black Losses:',
         blackLossesBullet,
-        'White Losses: ',
+        'White Losses:',
         whiteLossesBullet
       );
       console.log(
         'DAILY',
-        'Black Winrate: ',
+        'Black Winrate:',
         blackWinRateDaily.toFixed(2),
-        'White Winrate: ',
+        'White Winrate:',
         whiteWinRateDaily.toFixed(2),
-        'Black Wins: ',
+        'Black Wins:',
         blackWinsDaily,
-        'White Wins: ',
+        'White Wins:',
         whiteWinsDaily,
-        'Black Draws: ',
+        'Black Draws:',
         blackDrawsDaily,
-        'White Draws: ',
+        'White Draws:',
         whiteDrawsDaily,
-        'Black Losses: ',
+        'Black Losses:',
         blackLossesDaily,
-        'White Losses: ',
+        'White Losses:',
         whiteLossesDaily
       );
     })

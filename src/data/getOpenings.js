@@ -34,31 +34,35 @@ export default function Openings(user) {
       return games2;
     })
     .then(function (games) {
-      
       const resetValues = () => {
         for (let i = 0; i < OPENINGS.length; i++) {
-            OPENINGS[i].count = 0;
-            OPENINGS[i].whiteCount = 0;
-            OPENINGS[i].blackCount = 0;
-            OPENINGS[i].wins = 0;
-            OPENINGS[i].losses = 0;
-            OPENINGS[i].draws = 0;
-            OPENINGS[i].rapidGames = 0;
-            OPENINGS[i].blitzGames = 0;
-            OPENINGS[i].bulletGames = 0;
-            OPENINGS[i].dailyGames = 0;
-            OPENINGS[i].rapidWins = 0;
-            OPENINGS[i].rapidLosses = 0;
-            OPENINGS[i].rapidDraws = 0;
-            OPENINGS[i].blitzWins = 0;
-            OPENINGS[i].blitzLosses = 0;
-            OPENINGS[i].blitzDraws = 0;
-            OPENINGS[i].bulletWins = 0;
-            OPENINGS[i].bulletLosses = 0;
-            OPENINGS[i].bulletDraws = 0;
-            OPENINGS[i].dailyWins = 0;
-            OPENINGS[i].dailyLosses = 0;
-            OPENINGS[i].dailyDraws = 0;
+          OPENINGS[i].count = 0;
+          OPENINGS[i].whiteCount = 0;
+          OPENINGS[i].blackCount = 0;
+          OPENINGS[i].wins = 0;
+          OPENINGS[i].losses = 0;
+          OPENINGS[i].draws = 0;
+          OPENINGS[i].rapidGames = 0;
+          OPENINGS[i].blitzGames = 0;
+          OPENINGS[i].bulletGames = 0;
+          OPENINGS[i].dailyGames = 0;
+          OPENINGS[i].rapidWins = 0;
+          OPENINGS[i].rapidLosses = 0;
+          OPENINGS[i].rapidDraws = 0;
+          OPENINGS[i].blitzWins = 0;
+          OPENINGS[i].blitzLosses = 0;
+          OPENINGS[i].blitzDraws = 0;
+          OPENINGS[i].bulletWins = 0;
+          OPENINGS[i].bulletLosses = 0;
+          OPENINGS[i].bulletDraws = 0;
+          OPENINGS[i].dailyWins = 0;
+          OPENINGS[i].dailyLosses = 0;
+          OPENINGS[i].dailyDraws = 0;
+          OPENINGS[i].overallWinrate = 0;
+          OPENINGS[i].rapidWinrate = 0;
+          OPENINGS[i].blitzWinrate = 0;
+          OPENINGS[i].bulletWinrate = 0;
+          OPENINGS[i].dailyWinrate = 0;
         }
       };
 
@@ -272,7 +276,10 @@ export default function Openings(user) {
           }
         };
 
-        if (blackUser === user && currentGame.rated) {
+        if (
+          blackUser.toUpperCase() === user.toUpperCase() &&
+          currentGame.rated
+        ) {
           increaseValues(0, 'Kings-Fianchetto-Opening', blackResult);
           increaseValues(1, 'Queens-Pawn-Opening', blackResult);
           increaseValues(2, 'Reti-Opening', blackResult);
@@ -580,7 +587,10 @@ export default function Openings(user) {
           increaseValues(999, 'Other-Openings', blackResult);
         }
 
-        if (whiteUser === user && currentGame.rated) {
+        if (
+          whiteUser.toUpperCase() === user.toUpperCase() &&
+          currentGame.rated
+        ) {
           increaseValues(0, 'Kings-Fianchetto-Opening', whiteResult);
           increaseValues(1, 'Queens-Pawn-Opening', whiteResult);
           increaseValues(2, 'Reti-Opening', whiteResult);
@@ -887,9 +897,26 @@ export default function Openings(user) {
           );
           increaseValues(999, 'Other-Openings', whiteResult);
         }
+        for (let i = 0; i < OPENINGS.length; i++) {
+          const overallWinrate = ((OPENINGS[i].wins / OPENINGS[i].count) * 100).toFixed(2);
+          const rapidWinrate =
+            ((OPENINGS[i].rapidWins / OPENINGS[i].rapidGames) * 100).toFixed(2);
+          const blitzWinrate =
+            ((OPENINGS[i].blitzWins / OPENINGS[i].blitzGames) * 100).toFixed(2);
+          const bulletWinrate =
+            ((OPENINGS[i].bulletWins / OPENINGS[i].bulletGames) * 100).toFixed(2);
+          const dailyWinrate =
+            ((OPENINGS[i].dailyWins / OPENINGS[i].dailyGames) * 100).toFixed(2);
+
+          OPENINGS[i].overallWinrate = overallWinrate;
+          OPENINGS[i].rapidWinrate = rapidWinrate;
+          OPENINGS[i].blitzWinrate = blitzWinrate;
+          OPENINGS[i].bulletWinrate = bulletWinrate;
+          OPENINGS[i].dailyWinrate = dailyWinrate;
+        }
       }
 
-      console.log(OPENINGS);
+      console.log('Opening Info', OPENINGS);
     })
     .catch(function (err) {
       console.log(err);
