@@ -146,5 +146,31 @@ VERSION 0.2.0 {
     - Refactor getStats.js
     - Refactor getOpenings.js
     - Error messages in console
+    - Fix failed to fetch bug (probably cased by fetching two things at once)
+    - Fix TypeError bug on console on first render *
+    - Find out how to import images to rank file
+}
+VERSION 0.2.1 {
+
+    IMPROVEMENTS: 
+
+    - Created function that will return an array of objects containing the data needed to hook up with elo chart
+    - Created Dropdown button on dashboard to select time class
+    - EloChart graph displays actual correct data on the dashboard
+    - Temporarily removed above functionality to refactor
+    - Turned all variables in getStats.js into an array of objects (Deleted around 170 lines of code)
+    - Moved eloChange function into EloChart.jsx
+    - First implement of useEffect hook
+    - Fixed failed to fetch bug in console where user would have to click update multiple times
+    - Did a little refactoring in getStats.js with if statements relating to draws (Deleted around 100 more lines of code)
+    - Hikaru's data (the default state) now shows up in console on refresh
+
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+               
+    - Refactor files *
+    - Error messages in console
+    - Fix TypeError bug on console on first render 
     - Find out how to import images to rank file
 }

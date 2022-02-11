@@ -1,29 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { VictoryChart, VictoryLine } from 'victory';
 import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import Stats from '../../../data/getStats';
 import './eloChart.css';
 
 export default function EloChart() {
+  const [stats, setStats] = useState(Stats());
+
+  const eloChange = async (timeClassRating) => {
+    const change = [];
+    if (await stats.timeClassRating) {
+      if (stats.length < 50) {
+        change.map((num) => {
+          return { x: change.indexOf(num) + 1, y: change.num };
+        });
+      } else {
+        change.map((num) => {
+          if (num < 50) {
+            return { x: change.indexOf(num) + 1, y: change.num };
+          }
+        });
+      }
+    }
+    return change;
+  };
+
+  useEffect(() => {
+    Stats();
+  }, []);
+
   return (
     <div>
       <div className="container">
         <Card body outline color="secondary" className="text-center">
-          <CardHeader tag="h4">Elo Change (Last 10 Games)</CardHeader>
+          <CardHeader tag="h4">Elo Change</CardHeader>
           <CardBody>
-            <VictoryChart height={400}>
+            <VictoryChart height={450}>
               <VictoryLine
-                data={[
-                  { x: 1, y: 840 },
-                  { x: 2, y: 848 },
-                  { x: 3, y: 853 },
-                  { x: 4, y: 849 },
-                  { x: 5, y: 860 },
-                  { x: 6, y: 865 },
-                  { x: 7, y: 867 },
-                  { x: 8, y: 860 },
-                  { x: 9, y: 868 },
-                  { x: 10, y: 876 },
-                ]}
+                data={[{ x: 1, y: 13}]}
                 interpolation="natural"
                 style={{
                   data: {

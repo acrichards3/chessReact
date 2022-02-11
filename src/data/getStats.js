@@ -1,8 +1,8 @@
 const ChessWebAPI = require('chess-web-api');
 const chessAPI = new ChessWebAPI();
 
-export default function Stats(user) {
-  chessAPI
+export default async function Stats(user) {
+  await chessAPI
     .getPlayerMonthlyArchives(user)
     .then(async function (response) {
       const arr = response.body.archives;
@@ -33,48 +33,51 @@ export default function Stats(user) {
       return games2;
     })
     .then(function (games) {
-      const rapidRating = [];
-      const blitzRating = [];
-      const bulletRating = [];
-      const dailyRating = [];
-      const numOfGames = games.length;
+      const obj = {
+        rapidRating: [],
+        blitzRating: [],
+        bulletRating: [],
+        dailyRating: [],
 
-      let blackGamesPlayedOverall = 0;
-      let whiteGamesPlayedOverall = 0;
-      let blackWinsOverall = 0;
-      let blackDrawsOverall = 0;
-      let whiteWinsOverall = 0;
-      let whiteDrawsOverall = 0;
+        blackGamesPlayedOverall: 0,
+        whiteGamesPlayedOverall: 0,
+        blackWinsOverall: 0,
+        blackDrawsOverall: 0,
+        whiteWinsOverall: 0,
+        whiteDrawsOverall: 0,
 
-      let blackGamesPlayedRapid = 0;
-      let whiteGamesPlayedRapid = 0;
-      let blackWinsRapid = 0;
-      let blackDrawsRapid = 0;
-      let whiteWinsRapid = 0;
-      let whiteDrawsRapid = 0;
+        blackGamesPlayedRapid: 0,
+        whiteGamesPlayedRapid: 0,
+        blackWinsRapid: 0,
+        blackDrawsRapid: 0,
+        whiteWinsRapid: 0,
+        whiteDrawsRapid: 0,
 
-      let blackGamesPlayedBlitz = 0;
-      let whiteGamesPlayedBlitz = 0;
-      let blackWinsBlitz = 0;
-      let blackDrawsBlitz = 0;
-      let whiteWinsBlitz = 0;
-      let whiteDrawsBlitz = 0;
+        blackGamesPlayedBlitz: 0,
+        whiteGamesPlayedBlitz: 0,
+        blackWinsBlitz: 0,
+        blackDrawsBlitz: 0,
+        whiteWinsBlitz: 0,
+        whiteDrawsBlitz: 0,
 
-      let blackGamesPlayedBullet = 0;
-      let whiteGamesPlayedBullet = 0;
-      let blackWinsBullet = 0;
-      let blackDrawsBullet = 0;
-      let whiteWinsBullet = 0;
-      let whiteDrawsBullet = 0;
+        blackGamesPlayedBullet: 0,
+        whiteGamesPlayedBullet: 0,
+        blackWinsBullet: 0,
+        blackDrawsBullet: 0,
+        whiteWinsBullet: 0,
+        whiteDrawsBullet: 0,
 
-      let blackGamesPlayedDaily = 0;
-      let whiteGamesPlayedDaily = 0;
-      let blackWinsDaily = 0;
-      let blackDrawsDaily = 0;
-      let whiteWinsDaily = 0;
-      let whiteDrawsDaily = 0;
+        blackGamesPlayedDaily: 0,
+        whiteGamesPlayedDaily: 0,
+        blackWinsDaily: 0,
+        blackDrawsDaily: 0,
+        whiteWinsDaily: 0,
+        whiteDrawsDaily: 0,
 
-      console.log(games);
+        numOfGames: 0,
+      };
+
+      console.log('ALL GAMES', games);
 
       for (let i = 0; i < games.length; i++) {
         const currentGame = games[i];
@@ -85,354 +88,203 @@ export default function Stats(user) {
         const blackUser = games[i].black.username;
         const whiteUser = games[i].white.username;
 
-        
+        const checkDraw = (colorResult, timeClass) => {
+          if (
+            (colorResult === 'agreed' &&
+              currentGame.time_class === timeClass) ||
+            (colorResult === 'repetition' &&
+              currentGame.time_class === timeClass) ||
+            (colorResult === 'stalemate' &&
+              currentGame.time_class === timeClass) ||
+            (colorResult === 'insufficient' &&
+              currentGame.time_class === timeClass) ||
+            (colorResult === '50move' &&
+              currentGame.time_class === timeClass) ||
+            (colorResult === 'timevsinsufficient' &&
+              currentGame.time_class === timeClass)
+          ) {
+            return true;
+          }
+        };
 
-        if (blackUser.toUpperCase() === user.toUpperCase() && currentGame.rated) {
+        if (
+          blackUser.toUpperCase() === user.toUpperCase() &&
+          currentGame.rated
+        ) {
           // checks if user played as black and if game is rated
-          blackGamesPlayedOverall++;
+          obj.blackGamesPlayedOverall++;
+          obj.numOfGames++;
           if (currentGame.time_class === 'rapid') {
-            blackGamesPlayedRapid++;
-            rapidRating.push(blackRating);
+            obj.blackGamesPlayedRapid++;
+            obj.rapidRating.push(blackRating);
           } else if (currentGame.time_class === 'blitz') {
-            blackGamesPlayedBlitz++;
-            blitzRating.push(blackRating);
+            obj.blackGamesPlayedBlitz++;
+            obj.blitzRating.push(blackRating);
           } else if (currentGame.time_class === 'bullet') {
-            blackGamesPlayedBullet++;
-            bulletRating.push(blackRating);
+            obj.blackGamesPlayedBullet++;
+            obj.bulletRating.push(blackRating);
           } else if (currentGame.time_class === 'daily') {
-            blackGamesPlayedDaily++;
-            dailyRating.push(blackRating);
+            obj.blackGamesPlayedDaily++;
+            obj.dailyRating.push(blackRating);
           }
 
           if (blackResult === 'win') {
-            blackWinsOverall++;
+            obj.blackWinsOverall++;
           }
           if (blackResult === 'win' && currentGame.time_class === 'rapid') {
-            blackWinsRapid++;
+            obj.blackWinsRapid++;
           } else if (
             blackResult === 'win' &&
             currentGame.time_class === 'blitz'
           ) {
-            blackWinsBlitz++;
+            obj.blackWinsBlitz++;
           } else if (
             blackResult === 'win' &&
             currentGame.time_class === 'bullet'
           ) {
-            blackWinsBullet++;
+            obj.blackWinsBullet++;
           } else if (
             blackResult === 'win' &&
             currentGame.time_class === 'daily'
           ) {
-            blackWinsDaily++;
+            obj.blackWinsDaily++;
           }
 
-          if (
-            blackResult === 'agreed' ||
-            blackResult === 'repetition' ||
-            blackResult === 'stalemate' ||
-            blackResult === 'insufficient' ||
-            blackResult === '50move' ||
-            blackResult === 'timevsinsufficient'
-          ) {
-            blackDrawsOverall++;
+          if (checkDraw(blackResult)) {
+            obj.blackDrawsOverall++;
           }
-          if (
-            (blackResult === 'agreed' && currentGame.time_class === 'rapid') ||
-            (blackResult === 'repetition' &&
-              currentGame.time_class === 'rapid') ||
-            (blackResult === 'stalemate' &&
-              currentGame.time_class === 'rapid') ||
-            (blackResult === 'insufficient' &&
-              currentGame.time_class === 'rapid') ||
-            (blackResult === '50move' && currentGame.time_class === 'rapid') ||
-            (blackResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'rapid')
-          ) {
-            blackDrawsRapid++;
-          } else if (
-            (blackResult === 'agreed' && currentGame.time_class === 'blitz') ||
-            (blackResult === 'repetition' &&
-              currentGame.time_class === 'blitz') ||
-            (blackResult === 'stalemate' &&
-              currentGame.time_class === 'blitz') ||
-            (blackResult === 'insufficient' &&
-              currentGame.time_class === 'blitz') ||
-            (blackResult === '50move' && currentGame.time_class === 'blitz') ||
-            (blackResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'blitz')
-          ) {
-            blackDrawsBlitz++;
-          } else if (
-            (blackResult === 'agreed' && currentGame.time_class === 'bullet') ||
-            (blackResult === 'repetition' &&
-              currentGame.time_class === 'bullet') ||
-            (blackResult === 'stalemate' &&
-              currentGame.time_class === 'bullet') ||
-            (blackResult === 'insufficient' &&
-              currentGame.time_class === 'bullet') ||
-            (blackResult === '50move' && currentGame.time_class === 'bullet') ||
-            (blackResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'bullet')
-          ) {
-            blackDrawsBullet++;
-          } else if (
-            (blackResult === 'agreed' && currentGame.time_class === 'daily') ||
-            (blackResult === 'repetition' &&
-              currentGame.time_class === 'daily') ||
-            (blackResult === 'stalemate' &&
-              currentGame.time_class === 'daily') ||
-            (blackResult === 'insufficient' &&
-              currentGame.time_class === 'daily') ||
-            (blackResult === '50move' && currentGame.time_class === 'daily') ||
-            (blackResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'daily')
-          ) {
-            blackDrawsDaily++;
+          if (checkDraw(blackResult, 'rapid')) {
+            obj.blackDrawsRapid++;
+          } else if (checkDraw(blackResult, 'blitz')) {
+            obj.blackDrawsBlitz++;
+          } else if (checkDraw(blackResult, 'bullet')) {
+            obj.blackDrawsBullet++;
+          } else if (checkDraw(blackResult, 'daily')) {
+            obj.blackDrawsDaily++;
           }
         }
-        if (whiteUser.toUpperCase() === user.toUpperCase() && currentGame.rated) {
+        if (
+          whiteUser.toUpperCase() === user.toUpperCase() &&
+          currentGame.rated
+        ) {
           // checks if user played as white and if game is rated
-          whiteGamesPlayedOverall++;
+          obj.whiteGamesPlayedOverall++;
+          obj.numOfGames++;
           if (currentGame.time_class === 'rapid') {
-            whiteGamesPlayedRapid++;
-            rapidRating.push(whiteRating);
+            obj.whiteGamesPlayedRapid++;
+            obj.rapidRating.push(whiteRating);
           } else if (currentGame.time_class === 'blitz') {
-            whiteGamesPlayedBlitz++;
-            blitzRating.push(whiteRating);
+            obj.whiteGamesPlayedBlitz++;
+            obj.blitzRating.push(whiteRating);
           } else if (currentGame.time_class === 'bullet') {
-            whiteGamesPlayedBullet++;
-            bulletRating.push(whiteRating);
+            obj.whiteGamesPlayedBullet++;
+            obj.bulletRating.push(whiteRating);
           } else if (currentGame.time_class === 'daily') {
-            whiteGamesPlayedDaily++;
-            dailyRating.push(whiteRating);
+            obj.whiteGamesPlayedDaily++;
+            obj.dailyRating.push(whiteRating);
           }
 
           if (whiteResult === 'win') {
-            whiteWinsOverall++;
+            obj.whiteWinsOverall++;
           }
           if (whiteResult === 'win' && currentGame.time_class === 'rapid') {
-            whiteWinsRapid++;
+            obj.whiteWinsRapid++;
           } else if (
             whiteResult === 'win' &&
             currentGame.time_class === 'blitz'
           ) {
-            whiteWinsBlitz++;
+            obj.whiteWinsBlitz++;
           } else if (
             whiteResult === 'win' &&
             currentGame.time_class === 'bullet'
           ) {
-            whiteWinsBullet++;
+            obj.whiteWinsBullet++;
           } else if (
             whiteResult === 'win' &&
             currentGame.time_class === 'daily'
           ) {
-            whiteWinsDaily++;
+            obj.whiteWinsDaily++;
           }
 
-          if (
-            whiteResult === 'agreed' ||
-            whiteResult === 'repetition' ||
-            whiteResult === 'stalemate' ||
-            whiteResult === 'insufficient' ||
-            whiteResult === '50move' ||
-            whiteResult === 'timevsinsufficient'
-          ) {
-            whiteDrawsOverall++;
+          if (checkDraw(whiteResult)) {
+            obj.whiteDrawsOverall++;
           }
-          if (
-            (whiteResult === 'agreed' && currentGame.time_class === 'rapid') ||
-            (whiteResult === 'repetition' &&
-              currentGame.time_class === 'rapid') ||
-            (whiteResult === 'stalemate' &&
-              currentGame.time_class === 'rapid') ||
-            (whiteResult === 'insufficient' &&
-              currentGame.time_class === 'rapid') ||
-            (whiteResult === '50move' && currentGame.time_class === 'rapid') ||
-            (whiteResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'rapid')
-          ) {
-            whiteDrawsRapid++;
-          } else if (
-            (whiteResult === 'agreed' && currentGame.time_class === 'blitz') ||
-            (whiteResult === 'repetition' &&
-              currentGame.time_class === 'blitz') ||
-            (whiteResult === 'stalemate' &&
-              currentGame.time_class === 'blitz') ||
-            (whiteResult === 'insufficient' &&
-              currentGame.time_class === 'blitz') ||
-            (whiteResult === '50move' && currentGame.time_class === 'blitz') ||
-            (whiteResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'blitz')
-          ) {
-            whiteDrawsBlitz++;
-          } else if (
-            (whiteResult === 'agreed' && currentGame.time_class === 'bullet') ||
-            (whiteResult === 'repetition' &&
-              currentGame.time_class === 'bullet') ||
-            (whiteResult === 'stalemate' &&
-              currentGame.time_class === 'bullet') ||
-            (whiteResult === 'insufficient' &&
-              currentGame.time_class === 'bullet') ||
-            (whiteResult === '50move' && currentGame.time_class === 'bullet') ||
-            (whiteResult === 'timevsinsufficient' &&
-              currentGame.time_class === 'bullet')
-          ) {
-            whiteDrawsBullet++;
-          } else if (
-            (whiteResult === 'agreed' && currentGame.time_class === 'daily') ||
-            (whiteResult === 'repetition' &&
-              currentGame.time_class === 'daily') ||
-            (whiteResult === 'stalemate' &&
-              currentGame.time_class === 'daily') ||
-            (whiteResult === 'insufficient' &&
-              currentGame.time_class === 'daily') ||
-            (whiteResult === '50move' && currentGame.time_class === 'daily') ||
-            whiteResult === 'timevsinsufficient'
-          ) {
-            whiteDrawsDaily++;
+          if (checkDraw(whiteResult, 'rapid')) {
+            obj.whiteDrawsRapid++;
+          } else if (checkDraw(whiteResult, 'blitz')) {
+            obj.whiteDrawsBlitz++;
+          } else if (checkDraw(whiteResult, 'bullet')) {
+            obj.whiteDrawsBullet++;
+          } else if (checkDraw(whiteResult, 'daily')) {
+            obj.whiteDrawsDaily++;
           }
         }
       }
 
-      const blackWinRateOverall =
-        (blackWinsOverall / blackGamesPlayedOverall) * 100;
-      const whiteWinRateOverall =
-        (whiteWinsOverall / whiteGamesPlayedOverall) * 100;
-      const blackLossesOverall = blackGamesPlayedOverall - blackWinsOverall;
-      const whiteLossesOverall = whiteGamesPlayedOverall - whiteWinsOverall;
+      const winrates = {
+        blackWinRateOverall: (
+          (obj.blackWinsOverall / obj.blackGamesPlayedOverall) *
+          100
+        ).toFixed(2),
+        whiteWinRateOverall: (
+          (obj.whiteWinsOverall / obj.whiteGamesPlayedOverall) *
+          100
+        ).toFixed(2),
+        blackLossesOverall: obj.blackGamesPlayedOverall - obj.blackWinsOverall,
+        whiteLossesOverall: obj.whiteGamesPlayedOverall - obj.whiteWinsOverall,
 
-      const blackWinRateRapid = (blackWinsRapid / blackGamesPlayedRapid) * 100;
-      const whiteWinRateRapid = (whiteWinsRapid / whiteGamesPlayedRapid) * 100;
-      const blackLossesRapid = blackGamesPlayedRapid - blackWinsRapid;
-      const whiteLossesRapid = whiteGamesPlayedRapid - whiteWinsRapid;
+        blackWinRateRapid: (
+          (obj.blackWinsRapid / obj.blackGamesPlayedRapid) *
+          100
+        ).toFixed(2),
+        whiteWinRateRapid: (
+          (obj.whiteWinsRapid / obj.whiteGamesPlayedRapid) *
+          100
+        ).toFixed(2),
+        blackLossesRapid: obj.blackGamesPlayedRapid - obj.blackWinsRapid,
+        whiteLossesRapid: obj.whiteGamesPlayedRapid - obj.whiteWinsRapid,
 
-      const blackWinRateBlitz = (blackWinsBlitz / blackGamesPlayedBlitz) * 100;
-      const whiteWinRateBlitz = (whiteWinsBlitz / whiteGamesPlayedBlitz) * 100;
-      const blackLossesBlitz = blackGamesPlayedBlitz - blackWinsBlitz;
-      const whiteLossesBlitz = whiteGamesPlayedBlitz - whiteWinsBlitz;
+        blackWinRateBlitz: (
+          (obj.blackWinsBlitz / obj.blackGamesPlayedBlitz) *
+          100
+        ).toFixed(2),
+        whiteWinRateBlitz: (
+          (obj.whiteWinsBlitz / obj.whiteGamesPlayedBlitz) *
+          100
+        ).toFixed(2),
+        blackLossesBlitz: obj.blackGamesPlayedBlitz - obj.blackWinsBlitz,
+        whiteLossesBlitz: obj.whiteGamesPlayedBlitz - obj.whiteWinsBlitz,
 
-      const blackWinRateBullet =
-        (blackWinsBullet / blackGamesPlayedBullet) * 100;
-      const whiteWinRateBullet =
-        (whiteWinsBullet / whiteGamesPlayedBullet) * 100;
-      const blackLossesBullet = blackGamesPlayedBullet - blackWinsBullet;
-      const whiteLossesBullet = whiteGamesPlayedBullet - whiteWinsBullet;
+        blackWinRateBullet: (
+          (obj.blackWinsBullet / obj.blackGamesPlayedBullet) *
+          100
+        ).toFixed(2),
+        whiteWinRateBullet: (
+          (obj.whiteWinsBullet / obj.whiteGamesPlayedBullet) *
+          100
+        ).toFixed(2),
+        blackLossesBullet: obj.blackGamesPlayedBullet - obj.blackWinsBullet,
+        whiteLossesBullet: obj.whiteGamesPlayedBullet - obj.whiteWinsBullet,
 
-      const blackWinRateDaily = (blackWinsDaily / blackGamesPlayedDaily) * 100;
-      const whiteWinRateDaily = (whiteWinsDaily / whiteGamesPlayedDaily) * 100;
-      const blackLossesDaily = blackGamesPlayedDaily - blackWinsDaily;
-      const whiteLossesDaily = whiteGamesPlayedDaily - whiteWinsDaily;
+        blackWinRateDaily: (
+          (obj.blackWinsDaily / obj.blackGamesPlayedDaily) *
+          100
+        ).toFixed(2),
+        whiteWinRateDaily: (
+          (obj.whiteWinsDaily / obj.whiteGamesPlayedDaily) *
+          100
+        ).toFixed(2),
+        blackLossesDaily: obj.blackGamesPlayedDaily - obj.blackWinsDaily,
+        whiteLossesDaily: obj.whiteGamesPlayedDaily - obj.whiteWinsDaily,
+      };
 
-      console.log(
-        'Rapid: ',
-        rapidRating,
-        'Blitz: ',
-        blitzRating,
-        'Bullet: ',
-        bulletRating,
-        'Daily: ',
-        dailyRating
-      );
+      const information = [obj, winrates];
 
-      console.log(
-        'OVERALL',
-        'Black Winrate:',
-        blackWinRateOverall.toFixed(2),
-        'White Winrate:',
-        whiteWinRateOverall.toFixed(2),
-        'Black Wins:',
-        blackWinsOverall,
-        'White Wins:',
-        whiteWinsOverall,
-        'Black Draws:',
-        blackDrawsOverall,
-        'White Draws:',
-        whiteDrawsOverall,
-        'Black Losses:',
-        blackLossesOverall,
-        'White Losses:',
-        whiteLossesOverall,
-        'Total Number of Games:',
-        numOfGames
-      );
-      console.log(
-        'RAPID',
-        'Black Winrate:',
-        blackWinRateRapid.toFixed(2),
-        'White Winrate:',
-        whiteWinRateRapid.toFixed(2),
-        'Black Wins:',
-        blackWinsRapid,
-        'White Wins:',
-        whiteWinsRapid,
-        'Black Draws:',
-        blackDrawsRapid,
-        'White Draws:',
-        whiteDrawsRapid,
-        'Black Losses:',
-        blackLossesRapid,
-        'White Losses:',
-        whiteLossesRapid
-      );
-      console.log(
-        'BLITZ',
-        'Black Winrate:',
-        blackWinRateBlitz.toFixed(2),
-        'White Winrate:',
-        whiteWinRateBlitz.toFixed(2),
-        'Black Wins:',
-        blackWinsBlitz,
-        'White Wins:',
-        whiteWinsBlitz,
-        'Black Draws:',
-        blackDrawsBlitz,
-        'White Draws:',
-        whiteDrawsBlitz,
-        'Black Losses:',
-        blackLossesBlitz,
-        'White Losses:',
-        whiteLossesBlitz
-      );
-      console.log(
-        'BULLET',
-        'Black Winrate:',
-        blackWinRateBullet.toFixed(2),
-        'White Winrate:',
-        whiteWinRateBullet.toFixed(2),
-        'Black Wins:',
-        blackWinsBullet,
-        'White Wins:',
-        whiteWinsBullet,
-        'Black Draws:',
-        blackDrawsBullet,
-        'White Draws:',
-        whiteDrawsBullet,
-        'Black Losses:',
-        blackLossesBullet,
-        'White Losses:',
-        whiteLossesBullet
-      );
-      console.log(
-        'DAILY',
-        'Black Winrate:',
-        blackWinRateDaily.toFixed(2),
-        'White Winrate:',
-        whiteWinRateDaily.toFixed(2),
-        'Black Wins:',
-        blackWinsDaily,
-        'White Wins:',
-        whiteWinsDaily,
-        'Black Draws:',
-        blackDrawsDaily,
-        'White Draws:',
-        whiteDrawsDaily,
-        'Black Losses:',
-        blackLossesDaily,
-        'White Losses:',
-        whiteLossesDaily
-      );
+      console.log('STATS DATA', information);
+
+      return information;
     })
-    .catch(function (err) {
-      console.log(err);
+    .catch(async function (err) {
+      console.log(await err);
     });
 }
