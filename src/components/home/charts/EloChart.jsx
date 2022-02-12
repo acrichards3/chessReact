@@ -2,32 +2,58 @@ import React, { useEffect, useState } from 'react';
 import { VictoryChart, VictoryLine } from 'victory';
 import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Stats from '../../../data/getStats';
+import { handleDropdownEvent } from '../SearchUser';
 import './eloChart.css';
 
 export default function EloChart() {
-  const [stats, setStats] = useState(Stats());
+  const [stats, setStats] = useState();
+  const [timeClass, setTimeClass] = useState('Overall');
 
-  const eloChange = async (timeClassRating) => {
-    const change = [];
-    if (await stats.timeClassRating) {
+  useEffect(() => {
+    setTimeClass(handleDropdownEvent());
+    updateStats();
+  }, [handleDropdownEvent()]);
+
+  async function updateStats() {
+    const results = await Stats();
+
+    switch (timeClass) {
+      case 'Rapid':
+        setStats(results.rapidRating);
+        break;
+      case 'Blitz':
+        setStats(results.blitzRating);
+        break;
+      case 'Bullet':
+        setStats(results.bulletRating);
+        break;
+      case 'Daily':
+        setStats(results.dailyRating);
+        break;
+      case 'Overall':
+        setStats(results.rapidRating);
+        break;
+    }
+    return stats;
+  }
+
+  const eloChange = () => {
+    if (stats) {
       if (stats.length < 50) {
-        change.map((num) => {
-          return { x: change.indexOf(num) + 1, y: change.num };
+        return stats.map((num) => {
+          return { x: stats.indexOf(num) + 1, y: stats.num };
         });
       } else {
-        change.map((num) => {
+        return stats.map((num) => {
           if (num < 50) {
-            return { x: change.indexOf(num) + 1, y: change.num };
+            return { x: stats.indexOf(num) + 1, y: stats.num };
           }
         });
       }
     }
-    return change;
   };
 
-  useEffect(() => {
-    Stats();
-  }, []);
+  console.log(eloChange());
 
   return (
     <div>
@@ -37,7 +63,7 @@ export default function EloChart() {
           <CardBody>
             <VictoryChart height={450}>
               <VictoryLine
-                data={[{ x: 1, y: 13}]}
+                data={eloChange()}
                 interpolation="natural"
                 style={{
                   data: {

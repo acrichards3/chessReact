@@ -152,6 +152,8 @@ VERSION 0.2.0 {
 }
 VERSION 0.2.1 {
 
+    Date Pushed: 2/11/2022
+
     IMPROVEMENTS: 
 
     - Created function that will return an array of objects containing the data needed to hook up with elo chart
@@ -169,6 +171,26 @@ VERSION 0.2.1 {
 
     EXISTING BUGS / THINGS TO FIX: 
                
+    - Refactor files *
+    - CORS error in console still exists when waiting for a short period before updating?
+    - Error messages in console
+    - Fix TypeError bug on console on first render 
+    - Find out how to import images to rank file
+}
+VERSION 0.2.2 {
+
+    Date Pushed: 
+
+    IMPROVEMENTS: 
+
+    - CORS error fixed? Might still occur at random, need more testing
+
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+               
+    - Use state between files to be able to display info on the graph by using useReducer ***
+    - CORS error?
     - Refactor files *
     - Error messages in console
     - Fix TypeError bug on console on first render 

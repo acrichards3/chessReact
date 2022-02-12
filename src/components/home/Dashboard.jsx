@@ -4,14 +4,10 @@ import WhiteWinrate from './charts/WhiteWinrate';
 import BlackWinrate from './charts/BlackWinrate';
 import Rank from './ranks/Rank';
 import SearchUser from './SearchUser';
-import getStats from '../../data/getStats';
-import getOpenings from '../../data/getOpenings';
 import './dashboard.css';
 
 export default function Dashboard() {
-  getStats();
-  getOpenings();
-
+  
   return (
     <div>
       <div className="enterUser">
