@@ -179,7 +179,7 @@ VERSION 0.2.1 {
 }
 VERSION 0.2.2 {
 
-    Date Pushed: 
+    Date Pushed: 2/12/2022
 
     IMPROVEMENTS: 
 
@@ -191,6 +191,26 @@ VERSION 0.2.2 {
                
     - Use state between files to be able to display info on the graph by using useReducer ***
     - CORS error?
+    - Refactor files *
+    - Error messages in console
+    - Fix TypeError bug on console on first render 
+    - Find out how to import images to rank file
+}
+VERSION 0.2.2.1 {
+
+    Date Pushed: 
+
+    IMPROVEMENTS: 
+
+    - Massive refactor of openings.js (removed 3700+ lines of code)
+    - new openings can easily be added or changed as well as the objects themselves
+
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+               
+    - Use state between files to be able to display info on the graph by using useReducer ***
+    - CORS error Still exists *
     - Refactor files *
     - Error messages in console
     - Fix TypeError bug on console on first render 

@@ -1,4 +1,4 @@
-import { OPENINGS } from './openings';
+import OPENINGS from './openings';
 const ChessWebAPI = require('chess-web-api');
 const chessAPI = new ChessWebAPI();
 
@@ -34,39 +34,7 @@ export default function Openings(user) {
       return games2;
     })
     .then(function (games) {
-      const resetValues = () => {
-        for (let i = 0; i < OPENINGS.length; i++) {
-          OPENINGS[i].count = 0;
-          OPENINGS[i].whiteCount = 0;
-          OPENINGS[i].blackCount = 0;
-          OPENINGS[i].wins = 0;
-          OPENINGS[i].losses = 0;
-          OPENINGS[i].draws = 0;
-          OPENINGS[i].rapidGames = 0;
-          OPENINGS[i].blitzGames = 0;
-          OPENINGS[i].bulletGames = 0;
-          OPENINGS[i].dailyGames = 0;
-          OPENINGS[i].rapidWins = 0;
-          OPENINGS[i].rapidLosses = 0;
-          OPENINGS[i].rapidDraws = 0;
-          OPENINGS[i].blitzWins = 0;
-          OPENINGS[i].blitzLosses = 0;
-          OPENINGS[i].blitzDraws = 0;
-          OPENINGS[i].bulletWins = 0;
-          OPENINGS[i].bulletLosses = 0;
-          OPENINGS[i].bulletDraws = 0;
-          OPENINGS[i].dailyWins = 0;
-          OPENINGS[i].dailyLosses = 0;
-          OPENINGS[i].dailyDraws = 0;
-          OPENINGS[i].overallWinrate = 0;
-          OPENINGS[i].rapidWinrate = 0;
-          OPENINGS[i].blitzWinrate = 0;
-          OPENINGS[i].bulletWinrate = 0;
-          OPENINGS[i].dailyWinrate = 0;
-        }
-      };
-
-      resetValues();
+      const allOpenings = OPENINGS();
 
       for (let i = 0; i < games.length; i++) {
         const currentGame = games[i];
@@ -77,113 +45,113 @@ export default function Openings(user) {
         const whiteResult = games[i].white.result;
 
         const increaseCount = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].count += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].count += 1;
         };
 
         const increaseWhiteCount = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].whiteCount += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].whiteCount += 1;
         };
 
         const increaseBlackCount = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].blackCount += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blackCount += 1;
         };
 
         const increaseWins = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].wins += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].wins += 1;
         };
 
         const increaseLosses = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].losses += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].losses += 1;
         };
 
         const increaseDraws = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].draws += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].draws += 1;
         };
 
         const increaseRapidGames = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].rapidGames += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].rapidGames += 1;
         };
 
         const increaseBlitzGames = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].blitzGames += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blitzGames += 1;
         };
 
         const increaseBulletGames = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].bulletGames += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].bulletGames += 1;
         };
 
         const increaseDailyGames = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].dailyGames += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].dailyGames += 1;
         };
 
         const increaseRapidWins = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].rapidWins += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].rapidWins += 1;
         };
 
         const increaseRapidLosses = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].rapidLosses += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].rapidLosses += 1;
         };
 
         const increaseRapidDraws = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].rapidDraws += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].rapidDraws += 1;
         };
 
         const increaseBlitzWins = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].blitzWins += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blitzWins += 1;
         };
 
         const increaseBlitzLosses = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].blitzLosses += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blitzLosses += 1;
         };
 
         const increaseBlitzDraws = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].blitzDraws += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blitzDraws += 1;
         };
 
         const increaseBulletWins = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].bulletWins += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].bulletWins += 1;
         };
 
         const increaseBulletLosses = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].bulletLosses += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].bulletLosses += 1;
         };
 
         const increaseBulletDraws = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].bulletDraws += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].bulletDraws += 1;
         };
 
         const increaseDailyWins = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].dailyWins += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].dailyWins += 1;
         };
 
         const increaseDailyLosses = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].dailyLosses += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].dailyLosses += 1;
         };
 
         const increaseDailyDraws = (num) => {
-          const getIndex = OPENINGS.findIndex((x) => x.id === num);
-          OPENINGS[getIndex].dailyDraws += 1;
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].dailyDraws += 1;
         };
 
         const increaseValues = (id, opening, colorResult) => {
@@ -897,26 +865,26 @@ export default function Openings(user) {
           );
           increaseValues(999, 'Other-Openings', whiteResult);
         }
-        for (let i = 0; i < OPENINGS.length; i++) {
-          const overallWinrate = ((OPENINGS[i].wins / OPENINGS[i].count) * 100).toFixed(2);
+        for (let i = 0; i < allOpenings.length; i++) {
+          const overallWinrate = ((allOpenings[i].wins / allOpenings[i].count) * 100).toFixed(2);
           const rapidWinrate =
-            ((OPENINGS[i].rapidWins / OPENINGS[i].rapidGames) * 100).toFixed(2);
+            ((allOpenings[i].rapidWins / allOpenings[i].rapidGames) * 100).toFixed(2);
           const blitzWinrate =
-            ((OPENINGS[i].blitzWins / OPENINGS[i].blitzGames) * 100).toFixed(2);
+            ((allOpenings[i].blitzWins / allOpenings[i].blitzGames) * 100).toFixed(2);
           const bulletWinrate =
-            ((OPENINGS[i].bulletWins / OPENINGS[i].bulletGames) * 100).toFixed(2);
+            ((allOpenings[i].bulletWins / allOpenings[i].bulletGames) * 100).toFixed(2);
           const dailyWinrate =
-            ((OPENINGS[i].dailyWins / OPENINGS[i].dailyGames) * 100).toFixed(2);
+            ((allOpenings[i].dailyWins / allOpenings[i].dailyGames) * 100).toFixed(2);
 
-          OPENINGS[i].overallWinrate = overallWinrate;
-          OPENINGS[i].rapidWinrate = rapidWinrate;
-          OPENINGS[i].blitzWinrate = blitzWinrate;
-          OPENINGS[i].bulletWinrate = bulletWinrate;
-          OPENINGS[i].dailyWinrate = dailyWinrate;
+          allOpenings[i].overallWinrate = overallWinrate;
+          allOpenings[i].rapidWinrate = rapidWinrate;
+          allOpenings[i].blitzWinrate = blitzWinrate;
+          allOpenings[i].bulletWinrate = bulletWinrate;
+          allOpenings[i].dailyWinrate = dailyWinrate;
         }
       }
 
-      console.log('Opening Info', OPENINGS);
+      console.log('Opening Info', allOpenings);
     })
     .catch(function (err) {
       console.log(err);
