@@ -13,35 +13,28 @@ import Stats from '../../data/getStats';
 import Openings from '../../data/getOpenings';
 import './searchUser.css';
 
-export default function SearchUser() {
-  const [name, setName] = useState('Hikaru');
+export default function SearchUser(props) {
   const [stored, setStored] = useState('Hikaru');
   const [drop, setDrop] = useState(false);
 
   useEffect(() => {
-    async function run() {
-      await Player(name)
-        .then(await Stats(name))
-        .then(Openings(name));
-    }
-
-    run();
-    handleDropdownEvent('Overall');
-    setStored(name);
+    Player(props.name);
+    Stats(props.name);
+    Openings(props.name);
   }, []);
 
 
   function handleChange(e) {
     if (e.target.value === 'Update') {
       async function run() {
-        await Player(name)
-          .then(await Stats(name))
-          .then(Openings(name));
+        await Player(props.name)
+          .then(Stats(props.name))
+          .then(Openings(props.name));
       }
       run();
-      setStored(name);
+      setStored(props.name);
     } else {
-      setName(e.target.value);
+      props.setName(e.target.value);
     }
   }
 
@@ -54,6 +47,7 @@ export default function SearchUser() {
   const toggleDropdown = () => {
     setDrop((prevState) => !prevState);
   };
+
 
   return (
     <div className="container">
@@ -81,35 +75,35 @@ export default function SearchUser() {
         <div className="row">
           <div className="col timeClass">
             <Dropdown isOpen={drop} toggle={toggleDropdown}>
-              <DropdownToggle caret> {handleDropdownEvent()} </DropdownToggle>
+              <DropdownToggle caret> {props.timeState} </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem
                   id="overalRating"
-                  onClick={() => handleDropdownEvent('Overall')}
+                  onClick={() => props.setTimeState('Overall')}
                 >
                   Overall
                 </DropdownItem>
                 <DropdownItem
                   id="rapidRating"
-                  onClick={() => handleDropdownEvent('Rapid')}
+                  onClick={() => props.setTimeState('Rapid')}
                 >
                   Rapid
                 </DropdownItem>
                 <DropdownItem
                   id="blitzRating"
-                  onClick={() => handleDropdownEvent('Blitz')}
+                  onClick={() => props.setTimeState('Blitz')}
                 >
                   Blitz
                 </DropdownItem>
                 <DropdownItem
                   id="bulletRating"
-                  onClick={() => handleDropdownEvent('Bullet')}
+                  onClick={() => props.setTimeState('Bullet')}
                 >
                   Bullet
                 </DropdownItem>
                 <DropdownItem
                   id="dailyRating"
-                  onClick={() => handleDropdownEvent('Daily')}
+                  onClick={() => props.setTimeState('Daily')}
                 >
                   Daily
                 </DropdownItem>
@@ -130,10 +124,4 @@ export default function SearchUser() {
       </div>
     </div>
   );
-}
-
-export const handleDropdownEvent = (value) => {
-  let timeClassString = 'Overall';
-  timeClassString = value;
-  return timeClassString;
 }

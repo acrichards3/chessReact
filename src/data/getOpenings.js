@@ -2,8 +2,8 @@ import OPENINGS from './openings';
 const ChessWebAPI = require('chess-web-api');
 const chessAPI = new ChessWebAPI();
 
-export default function Openings(user) {
-  chessAPI
+export default async function Openings(user) {
+  await chessAPI
     .getPlayerMonthlyArchives(user)
     .then(async function (response) {
       const arr = response.body.archives;

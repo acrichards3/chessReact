@@ -216,3 +216,23 @@ VERSION 0.2.2.1 {
     - Fix TypeError bug on console on first render 
     - Find out how to import images to rank file
 }
+VERSION 0.2.3 {
+
+    Date Pushed: 
+
+    IMPROVEMENTS: 
+
+    - Fixed logic for eloChange chart
+    - Lifting state in Dashboard.jsx to be shared between SearchUser.jsx and EloChart.jsx
+
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+               
+    - Use state between files to be able to display info on the graph by using useReducer ***
+    - CORS error Still exists *
+    - Refactor files *
+    - Error messages in console
+    - Fix TypeError bug on console on first render 
+    - Find out how to import images to rank file
+}

@@ -1,59 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VictoryChart, VictoryLine } from 'victory';
 import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Stats from '../../../data/getStats';
-import { handleDropdownEvent } from '../SearchUser';
 import './eloChart.css';
 
-export default function EloChart() {
+export default function EloChart(props) {
   const [stats, setStats] = useState();
-  const [timeClass, setTimeClass] = useState('Overall');
 
+  
   useEffect(() => {
-    setTimeClass(handleDropdownEvent());
-    updateStats();
-  }, [handleDropdownEvent()]);
-
-  async function updateStats() {
-    const results = await Stats();
-
-    switch (timeClass) {
-      case 'Rapid':
-        setStats(results.rapidRating);
-        break;
-      case 'Blitz':
-        setStats(results.blitzRating);
-        break;
-      case 'Bullet':
-        setStats(results.bulletRating);
-        break;
-      case 'Daily':
-        setStats(results.dailyRating);
-        break;
-      case 'Overall':
-        setStats(results.rapidRating);
-        break;
+    async function updateStats(user) {
+      const results = Stats(user);
+  
+      console.log('WHYYYYYYYYYYYYYY', results);
+  
+      switch (props.timeState) {
+        case 'Rapid' || 'Overall':
+          setStats(results.rapidRating);
+          break;
+        case 'Blitz':
+          setStats(results.blitzRating);
+          break;
+        case 'Bullet':
+          setStats(results.bulletRating);
+          break;
+        case 'Daily':
+          setStats(results.dailyRating);
+          break;
+        default: 
+          setStats(null);
+      }
     }
-    return stats;
-  }
+    updateStats(props.name);
+  }, [props.timeState, props.name])
 
-  const eloChange = () => {
-    if (stats) {
-      if (stats.length < 50) {
-        return stats.map((num) => {
-          return { x: stats.indexOf(num) + 1, y: stats.num };
-        });
+
+  const eloChange = (rating) => {
+    if (rating) {
+      if (rating.length < 50) {
+        return rating.map((num, index) => ({ x: index + 1, y: num }));
       } else {
-        return stats.map((num) => {
-          if (num < 50) {
-            return { x: stats.indexOf(num) + 1, y: stats.num };
-          }
-        });
+        return rating.reverse.slice(0, 50).map((num, index) => ({ x: index + 1, y: num }));
       }
     }
   };
-
-  console.log(eloChange());
 
   return (
     <div>
@@ -63,7 +53,7 @@ export default function EloChart() {
           <CardBody>
             <VictoryChart height={450}>
               <VictoryLine
-                data={eloChange()}
+                data={eloChange(stats)}
                 interpolation="natural"
                 style={{
                   data: {
