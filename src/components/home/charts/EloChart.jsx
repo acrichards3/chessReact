@@ -10,7 +10,7 @@ export default function EloChart(props) {
   
   useEffect(() => {
     async function updateStats(user) {
-      const results = Stats(user);
+      const results = await Stats(user);
   
       console.log('WHYYYYYYYYYYYYYY', results);
   
@@ -32,7 +32,8 @@ export default function EloChart(props) {
       }
     }
     updateStats(props.name);
-  }, [props.timeState, props.name])
+    // eslint-disable-next-line
+  }, [props.timeState])
 
 
   const eloChange = (rating) => {

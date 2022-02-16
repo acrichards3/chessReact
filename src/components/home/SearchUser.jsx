@@ -21,6 +21,7 @@ export default function SearchUser(props) {
     Player(props.name);
     Stats(props.name);
     Openings(props.name);
+    // eslint-disable-next-line
   }, []);
 
 
