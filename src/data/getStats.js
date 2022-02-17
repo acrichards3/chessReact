@@ -2,6 +2,7 @@ const ChessWebAPI = require('chess-web-api');
 const chessAPI = new ChessWebAPI();
 
 export default function Stats(user) {
+  console.log('SHAGGY', user);
   return chessAPI
     .getPlayerMonthlyArchives(user)
     .then(async function (response) {
@@ -19,26 +20,18 @@ export default function Stats(user) {
         }
       }
 
-      async function getJson(num) {
-        const response = await fetch(recents[num]);
-        const jsonResponse = await response.json();
-        return jsonResponse;
-      }
 
-      const convert = async () => {
-
-        for (let i = 0; i < recents.length; i++) {
-          results.push(getJson(i));
+      async function getJson() {
+        for (let i=0; i < recents.length; i++) {
+          const response = await fetch(recents[i]);
+          const jsonResponse = await response.json();
+          results.push(...jsonResponse.games);
         }
-
-        console.log('SHREEEEEEEEEEK', results);
-        
-        const games1 = (await results[0]).games.concat((await results[1]).games);
-        const games2 = games1.concat((await results[2]).games);
-        
-        return games2;
+        console.log(results, 'RUH ROH RAGGY');
+        return results;
       }
-        return convert();
+
+      return getJson();
     })
     .then(function (games) {
       const obj = {

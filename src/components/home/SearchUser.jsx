@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import {
   Form,
   FormGroup,
@@ -8,32 +8,14 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import Player from '../../data/setPlayer';
-import Stats from '../../data/getStats';
-import Openings from '../../data/getOpenings';
 import './searchUser.css';
 
 export default function SearchUser(props) {
-  const [stored, setStored] = useState('Hikaru');
   const [drop, setDrop] = useState(false);
-
-  useEffect(() => {
-    Player(props.name);
-    Stats(props.name);
-    Openings(props.name);
-    // eslint-disable-next-line
-  }, []);
-
 
   function handleChange(e) {
     if (e.target.value === 'Update') {
-      async function run() {
-        await Player(props.name)
-          .then(Stats(props.name))
-          .then(Openings(props.name));
-      }
-      run();
-      setStored(props.name);
+      props.updateStats(props.name);
     } else {
       props.setName(e.target.value);
     }
@@ -48,7 +30,6 @@ export default function SearchUser(props) {
   const toggleDropdown = () => {
     setDrop((prevState) => !prevState);
   };
-
 
   return (
     <div className="container">
@@ -116,7 +97,7 @@ export default function SearchUser(props) {
           <div className="col">
             <div className="displayName">
               <h4>
-                Displaying info for Chess.com user: <strong>{stored}</strong>{' '}
+                Displaying info for Chess.com user: <strong>{props.name}</strong>{' '}
                 (Last 90 Days)
               </h4>
             </div>

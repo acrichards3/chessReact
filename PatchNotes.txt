@@ -236,3 +236,23 @@ VERSION 0.2.3 {
     - Fix TypeError bug on console on first render 
     - Find out how to import images to rank file
 }
+VERSION 0.2.4 {
+
+    Date Pushed: 2/17/2022
+
+    IMPROVEMENTS: 
+
+    - Refactoring and lifting more state
+    - Fixed undefined Errors
+    - Elo chart now displayed data correctly!
+
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Showing info for *Name* updates when typing **               
+    - CORS error Still exists *
+    - Refactor files *
+    - Error messages in console
+    - Find out how to import images to rank file
+}
