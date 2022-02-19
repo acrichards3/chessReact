@@ -4,6 +4,9 @@ import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import './eloChart.css';
 
 export default function EloChart(props) {
+
+  console.log(props.stats, 'WHAT IS THIS???????');
+  
   const eloChange = (rating) => {
     if (rating) {
       if (rating.length < 50) {

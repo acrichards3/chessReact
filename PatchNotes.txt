@@ -256,3 +256,22 @@ VERSION 0.2.4 {
     - Error messages in console
     - Find out how to import images to rank file
 }
+VERSION 0.2.5 {
+
+    Date Pushed: 2/19/2022
+
+    IMPROVEMENTS: 
+
+    - Fixed issue where displayed name would update when typing 
+    - White winrate graph is now fully functional
+    - Black winrate graph is now fully functional
+    - Fixed bug where overall draws weren't being displayed
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - CORS error Still exists *
+    - Refactor files *
+    - Error messages in console
+    - Find out how to import images to rank file
+}

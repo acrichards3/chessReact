@@ -2,7 +2,7 @@ import React from 'react';
 import { VictoryPie } from 'victory';
 import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 
-export default function BlackWinrate() {
+export default function BlackWinrate(props) {
   return (
     <div>
       <div className="container">
@@ -12,11 +12,7 @@ export default function BlackWinrate() {
               <CardHeader tag="h4">Winrate as Black</CardHeader>
               <CardBody>
                 <VictoryPie
-                  data={[
-                    { x: 'Won', y: 16 },
-                    { x: 'Lost', y: 13 },
-                    { x: 'Drew', y: 1 },
-                  ]}
+                  data={props.blackInfo}
                   colorScale={['#3c89d0', '#ff2626', 'grey']}
                   animate={{
                     duration: 2000,

@@ -12,10 +12,12 @@ import './searchUser.css';
 
 export default function SearchUser(props) {
   const [drop, setDrop] = useState(false);
+  const [stored, setStored] = useState('Hikaru')
 
   function handleChange(e) {
     if (e.target.value === 'Update') {
       props.updateStats(props.name);
+      setStored(props.name);
     } else {
       props.setName(e.target.value);
     }
@@ -97,7 +99,7 @@ export default function SearchUser(props) {
           <div className="col">
             <div className="displayName">
               <h4>
-                Displaying info for Chess.com user: <strong>{props.name}</strong>{' '}
+                Displaying info for Chess.com user: <strong>{stored}</strong>{' '}
                 (Last 90 Days)
               </h4>
             </div>

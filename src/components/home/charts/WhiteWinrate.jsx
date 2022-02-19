@@ -2,7 +2,10 @@ import React from 'react';
 import { VictoryPie } from 'victory';
 import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 
-export default function WhiteWinrate() {
+export default function WhiteWinrate(props) {
+
+
+
   return (
     <div>
       <div className="container">
@@ -12,11 +15,7 @@ export default function WhiteWinrate() {
               <CardHeader tag="h4">Winrate as White</CardHeader>
               <CardBody>
                 <VictoryPie
-                  data={[
-                    { x: 'Won', y: 18 },
-                    { x: 'Lost', y: 10 },
-                    { x: 'Drew', y: 2 },
-                  ]}
+                  data={props.whiteInfo}
                   colorScale={['#3c89d0', '#ff2626', 'grey']}
                   animate={{
                     duration: 2000,

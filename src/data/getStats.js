@@ -20,9 +20,8 @@ export default function Stats(user) {
         }
       }
 
-
       async function getJson() {
-        for (let i=0; i < recents.length; i++) {
+        for (let i = 0; i < recents.length; i++) {
           const response = await fetch(recents[i]);
           const jsonResponse = await response.json();
           results.push(...jsonResponse.games);
@@ -151,17 +150,18 @@ export default function Stats(user) {
             obj.blackWinsDaily++;
           }
 
-          if (checkDraw(blackResult)) {
-            obj.blackDrawsOverall++;
-          }
           if (checkDraw(blackResult, 'rapid')) {
             obj.blackDrawsRapid++;
+            obj.blackDrawsOverall++;
           } else if (checkDraw(blackResult, 'blitz')) {
             obj.blackDrawsBlitz++;
+            obj.blackDrawsOverall++;
           } else if (checkDraw(blackResult, 'bullet')) {
             obj.blackDrawsBullet++;
+            obj.blackDrawsOverall++;
           } else if (checkDraw(blackResult, 'daily')) {
             obj.blackDrawsDaily++;
+            obj.blackDrawsOverall++;
           }
         }
         if (
@@ -207,17 +207,18 @@ export default function Stats(user) {
             obj.whiteWinsDaily++;
           }
 
-          if (checkDraw(whiteResult)) {
-            obj.whiteDrawsOverall++;
-          }
           if (checkDraw(whiteResult, 'rapid')) {
             obj.whiteDrawsRapid++;
+            obj.whiteDrawsOverall++;
           } else if (checkDraw(whiteResult, 'blitz')) {
             obj.whiteDrawsBlitz++;
+            obj.whiteDrawsOverall++;
           } else if (checkDraw(whiteResult, 'bullet')) {
             obj.whiteDrawsBullet++;
+            obj.whiteDrawsOverall++;
           } else if (checkDraw(whiteResult, 'daily')) {
             obj.whiteDrawsDaily++;
+            obj.whiteDrawsOverall++;
           }
         }
       }
