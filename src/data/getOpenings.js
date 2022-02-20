@@ -552,6 +552,7 @@ export default async function Openings(user) {
             'Kings-Indian-Defense-Bayonet-Attack',
             blackResult
           );
+          increaseValues(120, 'Kings-Pawn-Opening-Duras-Gambit', blackResult);
           increaseValues(999, 'Other-Openings', blackResult);
         }
 
@@ -863,18 +864,30 @@ export default async function Openings(user) {
             'Kings-Indian-Defense-Bayonet-Attack',
             whiteResult
           );
+          increaseValues(120, 'Kings-Pawn-Opening-Duras-Gambit', whiteResult);
           increaseValues(999, 'Other-Openings', whiteResult);
         }
         for (let i = 0; i < allOpenings.length; i++) {
-          const overallWinrate = ((allOpenings[i].wins / allOpenings[i].count) * 100).toFixed(2);
-          const rapidWinrate =
-            ((allOpenings[i].rapidWins / allOpenings[i].rapidGames) * 100).toFixed(2);
-          const blitzWinrate =
-            ((allOpenings[i].blitzWins / allOpenings[i].blitzGames) * 100).toFixed(2);
-          const bulletWinrate =
-            ((allOpenings[i].bulletWins / allOpenings[i].bulletGames) * 100).toFixed(2);
-          const dailyWinrate =
-            ((allOpenings[i].dailyWins / allOpenings[i].dailyGames) * 100).toFixed(2);
+          const overallWinrate = (
+            (allOpenings[i].wins / allOpenings[i].count) *
+            100
+          ).toFixed(2);
+          const rapidWinrate = (
+            (allOpenings[i].rapidWins / allOpenings[i].rapidGames) *
+            100
+          ).toFixed(2);
+          const blitzWinrate = (
+            (allOpenings[i].blitzWins / allOpenings[i].blitzGames) *
+            100
+          ).toFixed(2);
+          const bulletWinrate = (
+            (allOpenings[i].bulletWins / allOpenings[i].bulletGames) *
+            100
+          ).toFixed(2);
+          const dailyWinrate = (
+            (allOpenings[i].dailyWins / allOpenings[i].dailyGames) *
+            100
+          ).toFixed(2);
 
           allOpenings[i].overallWinrate = overallWinrate;
           allOpenings[i].rapidWinrate = rapidWinrate;
@@ -885,6 +898,7 @@ export default async function Openings(user) {
       }
 
       console.log('Opening Info', allOpenings);
+      return allOpenings;
     })
     .catch(function (err) {
       console.log(err);

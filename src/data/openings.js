@@ -120,6 +120,7 @@ function OPENINGS() {
     'Dutch Defense Stonewall Variation',
     "Queen's Gambit Declined Orthodox Defense",
     "King's Indian Defense Bayonet Attack",
+    "King's Pawn Opening: Důras Gambit",
     'Other Openings',
   ];
   const createObjs = () => {
@@ -157,6 +158,6 @@ function OPENINGS() {
     }));
   };
   return createObjs();
-};
+}
 
 export default OPENINGS;

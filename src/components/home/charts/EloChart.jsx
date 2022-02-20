@@ -9,10 +9,10 @@ export default function EloChart(props) {
   
   const eloChange = (rating) => {
     if (rating) {
-      if (rating.length < 50) {
+      if (rating.length < 100) {
         return rating.map((num, index) => ({ x: index + 1, y: num }));
       } else {
-        return rating.reverse().slice(0, 50).map((num, index) => ({ x: index + 1, y: num }));
+        return rating.reverse().slice(0, 100).map((num, index) => ({ x: index + 1, y: num }));
       }
     }
   };

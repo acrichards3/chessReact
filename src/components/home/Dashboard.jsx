@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import EloChart from './charts/EloChart';
+import MostPlayedOpenings from './charts/MostPlayedOpenings';
+import BestOpenings from './charts/BestOpenings';
+import WorstOpenings from './charts/WorstOpenings';
 import WhiteWinrate from './charts/WhiteWinrate';
 import BlackWinrate from './charts/BlackWinrate';
-import Rank from './ranks/Rank';
 import Stats from '../../data/getStats';
 import SearchUser from './SearchUser';
 import './dashboard.css';
@@ -167,9 +169,15 @@ export default function Dashboard() {
             <BlackWinrate blackInfo={blackInfo} />
           </div>
         </div>
-        <div className="row">
+        <div className="row openings">
           <div className="col-lg-4">
-            <Rank />
+            <MostPlayedOpenings />
+          </div>
+          <div className="col-lg-4">
+            <BestOpenings />
+          </div>
+          <div className="col-lg-4">
+            <WorstOpenings />
           </div>
         </div>
       </div>

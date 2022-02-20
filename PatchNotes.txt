@@ -275,3 +275,22 @@ VERSION 0.2.5 {
     - Error messages in console
     - Find out how to import images to rank file
 }
+VERSION 0.2.6 {
+
+    Date Pushed: 2/20/2022
+
+    IMPROVEMENTS: 
+
+    - Removed all level and rank aspects (including images folder) as they are no longer needed 
+    - Created MostPlayedOpenings.jsx
+    - Created BestOpenings.jsx
+    - Created WorstOpenings.jsx
+    - Created Cards for each and imported Victory Polar Bar charts
+
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - CORS error Still exists 
+    - Refactor files *
+    - Error messages in console
+}

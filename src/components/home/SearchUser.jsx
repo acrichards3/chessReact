@@ -13,7 +13,7 @@ import './searchUser.css';
 export default function SearchUser(props) {
   const [drop, setDrop] = useState(false);
   const [stored, setStored] = useState('Hikaru')
-
+  
   function handleChange(e) {
     if (e.target.value === 'Update') {
       props.updateStats(props.name);
