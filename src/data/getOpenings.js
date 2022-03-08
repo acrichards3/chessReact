@@ -2,8 +2,9 @@ import OPENINGS from './openings';
 const ChessWebAPI = require('chess-web-api');
 const chessAPI = new ChessWebAPI();
 
-export default async function Openings(user) {
-  await chessAPI
+export default function Openings(user) {
+  console.log('SCOOBY', user);
+  return chessAPI
     .getPlayerMonthlyArchives(user)
     .then(async function (response) {
       const arr = response.body.archives;
@@ -94,6 +95,46 @@ export default async function Openings(user) {
           allOpenings[getIndex].dailyGames += 1;
         };
 
+        const increaseRapidGamesWhite = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].rapidGamesWhite += 1;
+        };
+
+        const increaseBlitzGamesWhite = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blitzGamesWhite += 1;
+        };
+
+        const increaseBulletGamesWhite = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].bulletGamesWhite += 1;
+        };
+
+        const increaseDailyGamesWhite = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].dailyGamesWhite += 1;
+        };
+
+        const increaseRapidGamesBlack = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].rapidGamesBlack += 1;
+        };
+
+        const increaseBlitzGamesBlack = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].blitzGamesBlack += 1;
+        };
+
+        const increaseBulletGamesBlack = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].bulletGamesBlack += 1;
+        };
+
+        const increaseDailyGamesBlack = (num) => {
+          const getIndex = allOpenings.findIndex((x) => x.id === num);
+          allOpenings[getIndex].dailyGamesBlack += 1;
+        };
+
         const increaseRapidWins = (num) => {
           const getIndex = allOpenings.findIndex((x) => x.id === num);
           allOpenings[getIndex].rapidWins += 1;
@@ -155,91 +196,151 @@ export default async function Openings(user) {
         };
 
         const increaseValues = (id, opening, colorResult) => {
-          if (currentGamePgn.includes(opening)) {
-            increaseCount(id);
-          }
+          if (currentGame.rated === true) {
+            if (currentGamePgn.includes(opening)) {
+              increaseCount(id);
+              if (
+                currentGame.time_class === 'rapid' &&
+                colorResult === blackResult
+              ) {
+                increaseRapidGamesBlack(id);
+              }
+              if (
+                currentGame.time_class === 'blitz' &&
+                colorResult === blackResult
+              ) {
+                increaseBlitzGamesBlack(id);
+              }
+              if (
+                currentGame.time_class === 'bullet' &&
+                colorResult === blackResult
+              ) {
+                increaseBulletGamesBlack(id);
+              }
+              if (
+                currentGame.time_class === 'daily' &&
+                colorResult === blackResult
+              ) {
+                increaseDailyGamesBlack(id);
+              }
 
-          if (colorResult === blackResult && currentGamePgn.includes(opening)) {
-            increaseBlackCount(id);
-          }
+              if (
+                currentGame.time_class === 'rapid' &&
+                colorResult === whiteResult
+              ) {
+                increaseRapidGamesWhite(id);
+              }
+              if (
+                currentGame.time_class === 'blitz' &&
+                colorResult === whiteResult
+              ) {
+                increaseBlitzGamesWhite(id);
+              }
+              if (
+                currentGame.time_class === 'bullet' &&
+                colorResult === whiteResult
+              ) {
+                increaseBulletGamesWhite(id);
+              }
+              if (
+                currentGame.time_class === 'daily' &&
+                colorResult === whiteResult
+              ) {
+                increaseDailyGamesWhite(id);
+              }
+            }
 
-          if (colorResult === whiteResult && currentGamePgn.includes(opening)) {
-            increaseWhiteCount(id);
-          }
+            if (
+              colorResult === blackResult &&
+              currentGamePgn.includes(opening)
+            ) {
+              increaseBlackCount(id);
+            }
 
-          if (colorResult === 'win' && currentGamePgn.includes(opening)) {
-            // Handles Wins
-            increaseWins(id);
-            if (currentGame.time_class === 'rapid') {
-              increaseRapidGames(id);
-              increaseRapidWins(id);
+            if (
+              colorResult === whiteResult &&
+              currentGamePgn.includes(opening)
+            ) {
+              increaseWhiteCount(id);
             }
-            if (currentGame.time_class === 'blitz') {
-              increaseBlitzGames(id);
-              increaseBlitzWins(id);
+
+            if (colorResult === 'win' && currentGamePgn.includes(opening)) {
+              // Handles Wins
+              increaseWins(id);
+              if (currentGame.time_class === 'rapid') {
+                increaseRapidGames(id);
+                increaseRapidWins(id);
+              }
+              if (currentGame.time_class === 'blitz') {
+                increaseBlitzGames(id);
+                increaseBlitzWins(id);
+              }
+              if (currentGame.time_class === 'bullet') {
+                increaseBulletGames(id);
+                increaseBulletWins(id);
+              }
+              if (currentGame.time_class === 'daily') {
+                increaseDailyGames(id);
+                increaseDailyWins(id);
+              }
             }
-            if (currentGame.time_class === 'bullet') {
-              increaseBulletGames(id);
-              increaseBulletWins(id);
+            if (
+              // Handles Draws
+              (colorResult === 'agreed' && currentGamePgn.includes(opening)) ||
+              (colorResult === 'repetition' &&
+                currentGamePgn.includes(opening)) ||
+              (colorResult === 'stalemate' &&
+                currentGamePgn.includes(opening)) ||
+              (colorResult === 'insufficient' &&
+                currentGamePgn.includes(opening)) ||
+              (colorResult === '50move' && currentGamePgn.includes(opening)) ||
+              (colorResult === 'timevsinsufficient' &&
+                currentGamePgn.includes(opening))
+            ) {
+              increaseDraws(id);
+              increaseCount(id);
+              if (currentGame.time_class === 'rapid') {
+                increaseRapidGames(id);
+                increaseRapidDraws(id);
+              }
+              if (currentGame.time_class === 'blitz') {
+                increaseBlitzGames(id);
+                increaseBlitzDraws(id);
+              }
+              if (currentGame.time_class === 'bullet') {
+                increaseBulletGames(id);
+                increaseBulletDraws(id);
+              }
+              if (currentGame.time_class === 'daily') {
+                increaseDailyGames(id);
+                increaseDailyDraws(id);
+              }
             }
-            if (currentGame.time_class === 'daily') {
-              increaseDailyGames(id);
-              increaseDailyWins(id);
-            }
-          }
-          if (
-            // Handles Draws
-            (colorResult === 'agreed' && currentGamePgn.includes(opening)) ||
-            (colorResult === 'repetition' &&
-              currentGamePgn.includes(opening)) ||
-            (colorResult === 'stalemate' && currentGamePgn.includes(opening)) ||
-            (colorResult === 'insufficient' &&
-              currentGamePgn.includes(opening)) ||
-            (colorResult === '50move' && currentGamePgn.includes(opening)) ||
-            (colorResult === 'timevsinsufficient' &&
-              currentGamePgn.includes(opening))
-          ) {
-            increaseDraws(id);
-            if (currentGame.time_class === 'rapid') {
-              increaseRapidGames(id);
-              increaseRapidDraws(id);
-            }
-            if (currentGame.time_class === 'blitz') {
-              increaseBlitzGames(id);
-              increaseBlitzDraws(id);
-            }
-            if (currentGame.time_class === 'bullet') {
-              increaseBulletGames(id);
-              increaseBulletDraws(id);
-            }
-            if (currentGame.time_class === 'daily') {
-              increaseDailyGames(id);
-              increaseDailyDraws(id);
-            }
-          }
-          if (
-            (colorResult === 'checkmated' &&
-              currentGamePgn.includes(opening)) ||
-            (colorResult === 'resigned' && currentGamePgn.includes(opening)) ||
-            (colorResult === 'lose' && currentGamePgn.includes(opening))
-          ) {
-            // Handles Losses
-            increaseLosses(id);
-            if (currentGame.time_class === 'rapid') {
-              increaseRapidGames(id);
-              increaseRapidLosses(id);
-            }
-            if (currentGame.time_class === 'blitz') {
-              increaseBlitzGames(id);
-              increaseBlitzLosses(id);
-            }
-            if (currentGame.time_class === 'bullet') {
-              increaseBulletGames(id);
-              increaseBulletLosses(id);
-            }
-            if (currentGame.time_class === 'daily') {
-              increaseDailyGames(id);
-              increaseDailyLosses(id);
+            if (
+              (colorResult === 'checkmated' &&
+                currentGamePgn.includes(opening)) ||
+              (colorResult === 'resigned' &&
+                currentGamePgn.includes(opening)) ||
+              (colorResult === 'lose' && currentGamePgn.includes(opening))
+            ) {
+              // Handles Losses
+              increaseLosses(id);
+              if (currentGame.time_class === 'rapid') {
+                increaseRapidGames(id);
+                increaseRapidLosses(id);
+              }
+              if (currentGame.time_class === 'blitz') {
+                increaseBlitzGames(id);
+                increaseBlitzLosses(id);
+              }
+              if (currentGame.time_class === 'bullet') {
+                increaseBulletGames(id);
+                increaseBulletLosses(id);
+              }
+              if (currentGame.time_class === 'daily') {
+                increaseDailyGames(id);
+                increaseDailyLosses(id);
+              }
             }
           }
         };

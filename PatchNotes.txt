@@ -294,3 +294,25 @@ VERSION 0.2.6 {
     - Refactor files *
     - Error messages in console
 }
+VERSION 0.2.7 {
+
+    Date Pushed: 3/8/2022
+
+    IMPROVEMENTS: 
+
+    - Temporarily removed all 3 opening charts which will be replaced with a data table (Charts will be moved to another page)
+    - Added DataTable.jsx and added it to dashboard
+    - Table now includes full list of openings
+    - Table now Displays relevant overall data
+    - Table displays data for all different time classes except for white and black games in all timeclasses except overall
+    - Table displayes white and black games for each time class
+    - Bug fixed where draws were deducting the value of overall games for each opening (OVERALL ONLY)
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - getOpenings.js NEEDS to be refactored some how some way becoming too much to handle ***
+    - Fix bug where draws are deducting from total ***
+    - Create an Overall Elo Graph? (Might not do this)
+    - Refactor files *
+    - Error messages in console
+}

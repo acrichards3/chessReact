@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryBar } from 'victory';
+import { VictoryChart, VictoryBar, VictoryPolarAxis } from 'victory';
 import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 
 export default function MostPlayedOpenings() {
@@ -12,17 +12,23 @@ export default function MostPlayedOpenings() {
               <CardHeader tag="h4">Most Played Openings</CardHeader>
               <CardBody>
                 <VictoryChart polar height={450}>
+                  <VictoryPolarAxis
+                    dependentAxis
+                    style={{ axis: { stroke: 'none' } }}
+                    tickFormat={() => null}
+                  />
+                  <VictoryPolarAxis />
                   <VictoryBar
                     data={[
-                      { x: 'test1', y: 5 },
-                      { x: 'test2', y: 4 },
-                      { x: 'test3', y: 6 },
-                      { x: 'test4', y: 2 },
-                      { x: 'test5', y: 3 },
+                      { x: 'Kings Pawn Opening', y: 1 },
+                      { x: 'Karo Cann Defense', y: 2 },
+                      { x: 'Sicilian Defense', y: 4 },
+                      { x: 'Italian Game', y: 3 },
+                      { x: 'Tromposky Attack', y: 7 },
                     ]}
                     style={{
                       data: {
-                        fill: '#0275d8',
+                        fill: '#616161',
                         stroke: 'black',
                         strokeWidth: 2,
                       },

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import EloChart from './charts/EloChart';
-import MostPlayedOpenings from './charts/MostPlayedOpenings';
-import BestOpenings from './charts/BestOpenings';
-import WorstOpenings from './charts/WorstOpenings';
+import DataTable from './charts/DataTable';
 import WhiteWinrate from './charts/WhiteWinrate';
 import BlackWinrate from './charts/BlackWinrate';
 import Stats from '../../data/getStats';
+import Openings from '../../data/getOpenings';
 import SearchUser from './SearchUser';
 import './dashboard.css';
 
@@ -15,6 +14,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState();
   const [whiteInfo, setWhiteInfo] = useState();
   const [blackInfo, setBlackInfo] = useState();
+  const [openingInfo, setOpeningInfo] = useState();
 
   useEffect(() => {
     updateStats(name);
@@ -23,6 +23,8 @@ export default function Dashboard() {
 
   async function updateStats(user) {
     const results = await Stats(user);
+    const open = await Openings(user);
+    setOpeningInfo(open);
     setWhiteInfo(results);
     setBlackInfo(results);
 
@@ -170,15 +172,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="row openings">
-          <div className="col-lg-4">
-            <MostPlayedOpenings />
-          </div>
-          <div className="col-lg-4">
-            <BestOpenings />
-          </div>
-          <div className="col-lg-4">
-            <WorstOpenings />
-          </div>
+          <DataTable openingInfo={openingInfo} timeState={timeState} />
         </div>
       </div>
     </div>
