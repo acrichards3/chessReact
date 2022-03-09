@@ -316,3 +316,21 @@ VERSION 0.2.7 {
     - Refactor files *
     - Error messages in console
 }
+VERSION 0.2.8 {
+
+    Date Pushed: 3/9/2022
+
+    IMPROVEMENTS: 
+
+    - Urls for each opening are now generated automatically in each object
+    - Brought getOpenings.js down from over 1000 lines of code to around 150 lines 😎😎😎
+    - Fixed new bug from refactor where wins and losses werent being displayed correctly
+    - Fixed bug where draws were deducting from totals
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - Create an Overall Elo Graph? (Might not do this)
+    - Refactor files *
+    - Error messages in console
+}

@@ -121,19 +121,28 @@ function OPENINGS() {
     "Queen's Gambit Declined Orthodox Defense",
     "King's Indian Defense Bayonet Attack",
     "King's Pawn Opening: Důras Gambit",
-    'Other Openings',
+    'Indian Game: Knights Variation',
   ];
   const createObjs = () => {
     return names.map((value, i) => ({
       id: i,
       name: value,
+      url: value
+        .replaceAll("'", '')
+        .replaceAll(':', '')
+        .replaceAll(' ', '-')
+        .replaceAll('.', '-')
+        .replaceAll('ä', 'a')
+        .replaceAll('é', 'e')
+        .replaceAll('ó', 'o')
+        .replaceAll('ü', 'u')
+        .replaceAll('ů', 'u'),
       count: 0,
       whiteCount: 0,
       blackCount: 0,
       wins: 0,
       losses: 0,
       draws: 0,
-      avgNumOfMoves: 0,
       rapidGames: 0,
       blitzGames: 0,
       bulletGames: 0,
@@ -158,11 +167,21 @@ function OPENINGS() {
       dailyWins: 0,
       dailyLosses: 0,
       dailyDraws: 0,
-      overallWinrate: 0,
-      rapidWinrate: 0,
-      blitzWinrate: 0,
-      bulletWinrate: 0,
-      dailyWinrate: 0,
+      overallWinrate: function () {
+        return (this.wins / this.count).toFixed(2) * 100 + '%';
+      },
+      rapidWinrate: function () {
+        return (this.rapidWins / this.rapidGames).toFixed(2) * 100 + '%';
+      },
+      blitzWinrate: function () {
+        return (this.blitzWins / this.blitzGames).toFixed(2) * 100 + '%';
+      },
+      bulletWinrate: function () {
+        return (this.bulletWins / this.bulletGames).toFixed(2) * 100 + '%';
+      },
+      dailyWinrate: function () {
+        return (this.dailyWins / this.dailyGames).toFixed(2) * 100 + '%';
+      },
     }));
   };
   return createObjs();
