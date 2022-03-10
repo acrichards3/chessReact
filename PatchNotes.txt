@@ -334,3 +334,25 @@ VERSION 0.2.8 {
     - Refactor files *
     - Error messages in console
 }
+VERSION 0.2.9 {
+
+    Date Pushed: 3/10/2022
+
+    IMPROVEMENTS: 
+
+    - Implemented react router into App.js
+    - Set up a simple 404 page
+    - Refactored Sidebar component by mapping through an array of objects (amount of lines cut in half)
+    - User can now select an active tab on the sidebar
+    - Clicking on any given tab will route you to the correct page (if page not yet built takes you to 404 screen)
+    - Added fade in animation when choosing an active tab
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks
+    - Create an Overall Elo Graph? (Might not do this)
+    - Refactor files *
+    - Error messages in console
+    - Styling for 404 page
+}
