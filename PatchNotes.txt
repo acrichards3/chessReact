@@ -356,3 +356,24 @@ VERSION 0.2.9 {
     - Error messages in console
     - Styling for 404 page
 }
+VERSION 0.3.0 {
+
+    Date Pushed: 3/12/2022
+
+    IMPROVEMENTS: 
+
+    - Removed current items on top bar (RIP Shrek you will be missed)
+    - Replaced top bar with icons to route to Terms, About, and Privacy Pages.
+    - Refactored topbar to use array of objects and map through that array
+    - Created fully finished policy privacy page
+    - Created fully finished terms and conditions page
+    - Created fully finished about page
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks *
+    - Refactor getStats.js *
+    - Error messages in console
+    - Styling for 404 page
+}

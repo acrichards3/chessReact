@@ -1,6 +1,7 @@
-import React from "react";
-import "./topbar.css";
-import { NotificationsNone, Circle, Info } from "@mui/icons-material";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './topbar.css';
+import PAGES from './PAGES';
 
 export default function Topbar() {
   return (
@@ -10,21 +11,13 @@ export default function Topbar() {
           <span className="logo">ChessInfo</span>
         </div>
         <div className="topRight">
-          <div className="topbarIconContainer">
-            <NotificationsNone />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Circle className="activityIcon" />
-          </div>
-          <div className="topbarIconContainer">
-            <Info className="infoIcon" />
-          </div>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQv1sLp9YcLX02i0jWQEvcHe6UA7DWI-LLcsZMzElnqD7CIdnbqz9Vpi9vlgqfeUE5C_0&usqp=CAU"
-            alt="top avatar"
-            className="topAvatar"
-          />
+          {PAGES.map((tab) => {
+            return (
+              <Link exact to={tab.link} element={tab.icon} key={tab.id} >
+                <h2 key={tab.id} title={tab.page} className="icon">{tab.icon}</h2>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
