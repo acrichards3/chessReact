@@ -377,3 +377,20 @@ VERSION 0.3.0 {
     - Error messages in console
     - Styling for 404 page
 }
+VERSION 0.3.1.1 {
+
+    Date Pushed: 3/12/2022
+
+    IMPROVEMENTS: 
+
+    - Created files for priniples page
+    - Fixed stying bug on about page
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks *
+    - Refactor getStats.js *
+    - Error messages in console
+    - Styling for 404 page
+}

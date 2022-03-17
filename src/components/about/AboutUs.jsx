@@ -4,7 +4,7 @@ import './aboutUs.css';
 
 export default function AboutUs() {
   return (
-    <div className="conatiner">
+    <div className="container">
       <div className="row">
         <h1 className="title">About ChessInfo</h1>
       </div>

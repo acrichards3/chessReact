@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
 import About from './pages/About';
+import Principles from './pages/Principles';
 import NotFound from './components/NotFound';
 import './app.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -33,6 +34,7 @@ function App() {
                     element={<TermsConditions />}
                   />
                   <Route exact path="/about" element={<About />} />
+                  <Route exact path="/principles" element={<Principles />} />
                   <Route exact path="*" element={<NotFound />} />
                 </Routes>
               </div>
