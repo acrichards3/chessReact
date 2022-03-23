@@ -1,0 +1,15 @@
+.item {
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.border {
+    border: none;
+}
+
+.accord {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}

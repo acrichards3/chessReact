@@ -1,8 +1,8 @@
 import React from 'react';
-import allPrinciples from '../components/principles/AllPrinciples';
+import AllPrinciples from '../components/principles/AllPrinciples';
 
 export default function Principles() {
   return (
-    <allPrinciples />
+    <AllPrinciples />
   )
 }

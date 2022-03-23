@@ -377,14 +377,15 @@ VERSION 0.3.0 {
     - Error messages in console
     - Styling for 404 page
 }
-VERSION 0.3.1.1 {
+VERSION 0.3.1 {
 
-    Date Pushed: 3/12/2022
+    Date Pushed: 3/23/2022
 
     IMPROVEMENTS: 
 
     - Created files for priniples page
     - Fixed stying bug on about page
+    - Principles page finished useing BleprintJS tabs with React-Bootstrap Accordions
 
     EXISTING BUGS / THINGS TO FIX: 
 

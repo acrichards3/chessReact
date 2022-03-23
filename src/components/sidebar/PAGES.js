@@ -1,10 +1,7 @@
 import {
   Dashboard,
-  Gavel,
-  Info,
   LocalLibrary,
   NetworkWifi,
-  Policy,
   QueryStats,
   QuestionMark,
   School,
