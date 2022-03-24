@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import 'normalize.css';
-import '@blueprintjs/core/lib/css/blueprint.css';
-import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import Top10 from './Top10';
 import OpeningPrinciples from './OpeningPrinciples';
 import MidgamePrinciples from './MidgamePrinciples';
 import EndgamePrinciples from './EndgamePrinciples';
 import { Tab, Tabs } from '@blueprintjs/core';
+import 'normalize.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import './allPrinciples.css';
 
 export default function AllPrinciples() {

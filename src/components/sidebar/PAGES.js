@@ -8,7 +8,6 @@ import {
   SignalWifi0Bar,
   SignalWifi2Bar,
   TrendingUp,
-  YouTube,
 } from '@mui/icons-material';
 
 const PAGES = [
@@ -86,13 +85,6 @@ const PAGES = [
   },
   {
     id: 8,
-    page: 'Videos',
-    icon: <YouTube className="sidebarIcon" />,
-    above: false,
-    link: '/videos',
-  },
-  {
-    id: 9,
     page: 'FAQ',
     icon: <QuestionMark className="sidebarIcon" />,
     above: false,

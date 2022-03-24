@@ -2,7 +2,7 @@
   display: flex;
   flex: 1;
   height: calc(100%);
-  background-color: #232323;
+  background-color: #212529;
   position: sticky;
   top: 50px;
 }
@@ -16,7 +16,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #232323;
+  background: #212529;
   border-radius: 15px;
 }
 
@@ -48,7 +48,7 @@
 
 .sidebarListItem.active,
 .sidebarListItem:hover {
-  background-color: #343434;
+  background-color: #212529;
 }
 
 .sidebarIcon {

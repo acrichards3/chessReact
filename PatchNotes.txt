@@ -395,3 +395,26 @@ VERSION 0.3.1 {
     - Error messages in console
     - Styling for 404 page
 }
+VERSION 0.3.2 {
+
+    Date Pushed: 3/24/2022
+
+    IMPROVEMENTS: 
+
+    - Created and fully completed Rules page
+    - Changed color of topbar and sidebar
+    - Created and fully completed Beginner Openings Page
+    - Created and fully finished Intermediate Openings Page
+    - Created and fully finsihed Advanced Openings Page
+    - Removed Videos page from sidebar
+    - Created and finished FAQ page
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks *
+    - Refactor getStats.js *
+    - Error messages in console
+    - Styling for 404 page
+    - Other small styling bugs
+}
