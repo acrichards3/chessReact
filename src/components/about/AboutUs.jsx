@@ -20,12 +20,12 @@ export default function AboutUs() {
       <div className="row">
         <h4 className="header">Our Backstory</h4>
         <p className="text">
-          Chess is a passion of ours (and probably yours too since you're here)
-          and something that everyone is constantly chasing is to become a
-          better player. Sometimes though, it's very easy to feel like you are
-          spinning your wheels and not making any significany improvement.
-          ChessInfo was created to help you identify your strengths and
-          weaknesses to help you keep improving and to climb out of bad habits
+          Chess is a passion of ours here and something that everyone is
+          constantly chasing is to become a better player. Sometimes though,
+          it's very easy to feel like you are spinning your wheels and not
+          making any significany improvement. ChessInfo was created to help you
+          identify your strengths and weaknesses to help you keep improving and
+          to climb out of bad habits
         </p>
         <p className="text">
           For all of you tournament players out there, we're here to help you

@@ -418,3 +418,23 @@ VERSION 0.3.2 {
     - Styling for 404 page
     - Other small styling bugs
 }
+VERSION 0.3.3 {
+
+    Date Pushed: 3/25/2022
+
+    IMPROVEMENTS: 
+
+    - Removed Stats and rank page options (opting for a login system instead due to time contraints will probably add them back in later)
+    - Switched sidebar positioning to fixed instead of sticky
+    - Setup firebase with app
+    - Set up login button and component files & connected them all
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks *
+    - Refactor getStats.js *
+    - Error messages in console
+    - Styling for 404 page
+    - Other small styling bugs
+}

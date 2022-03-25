@@ -2,12 +2,10 @@ import {
   Dashboard,
   LocalLibrary,
   NetworkWifi,
-  QueryStats,
   QuestionMark,
   School,
   SignalWifi0Bar,
   SignalWifi2Bar,
-  TrendingUp,
 } from '@mui/icons-material';
 
 const PAGES = [
@@ -23,32 +21,18 @@ const PAGES = [
     link: '/dashboard',
   },
   {
-    id: 1,
-    page: 'In-Depth Stats',
-    icon: <QueryStats className="sidebarIcon" />,
-    above: false,
-    link: '/stats',
-  },
-  {
-    id: 2,
-    page: 'Level & Rank',
-    icon: <TrendingUp className="sidebarIcon" />,
-    above: false,
-    link: '/rank',
-  },
-  {
     category: 'For Beginners',
     above: true,
   },
   {
-    id: 3,
+    id: 1,
     page: 'Principles',
     icon: <LocalLibrary className="sidebarIcon" />,
     above: false,
     link: '/principles',
   },
   {
-    id: 4,
+    id: 2,
     page: 'Rules of Chess',
     icon: <School className="sidebarIcon" />,
     above: false,
@@ -59,21 +43,21 @@ const PAGES = [
     above: true,
   },
   {
-    id: 5,
+    id: 3,
     page: 'Beginner',
     icon: <SignalWifi0Bar className="sidebarIcon" />,
     above: false,
     link: '/beginner-openings',
   },
   {
-    id: 6,
+    id: 4,
     page: 'Intermediate',
     icon: <SignalWifi2Bar className="sidebarIcon" />,
     above: false,
     link: '/intermediate-openings',
   },
   {
-    id: 7,
+    id: 5,
     page: 'Advanced',
     icon: <NetworkWifi className="sidebarIcon" />,
     above: false,
@@ -84,7 +68,7 @@ const PAGES = [
     above: true,
   },
   {
-    id: 8,
+    id: 6,
     page: 'FAQ',
     icon: <QuestionMark className="sidebarIcon" />,
     above: false,

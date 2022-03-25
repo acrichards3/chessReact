@@ -19,12 +19,23 @@
   font-weight: bold;
   font-size: 30px;
   color: white;
+  padding-left: 4px;
   cursor: pointer;
 }
-
+.topLeft {
+  display: flex;
+  justify-content: left;
+}
 .topRight {
   display: flex;
   justify-content: right;
+}
+.signIn {
+  display: flex;
+  justify-content: right;
+  margin-top: 7px;
+  margin-right: 10px;
+  height: 50%;
 }
 .icon {
   color: white;
