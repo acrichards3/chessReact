@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@blueprintjs/core';
 import Profile from './login/Profile';
 import Login from './login/Login';
+import SignUp from './login/SignUp';
+import { AuthProvider } from '../../contexts/AuthContext';
 import PAGES from './PAGES';
 import './topbar.css';
 
 export default function Topbar() {
   const [status, setStatus] = useState('signedOut');
-  const [loginBtn, setLoginBtn] = useState('Log In');
+  const [show, setShow] = useState(false);
 
   const getAccount = () => {
-    if (status === 'signedOut') {
-      console.log('SIGNED OUT');
-      return <Login setStatus={setStatus} setLoginBtn={setLoginBtn} />;
-    }
     if (status === 'signedIn') {
       console.log('SIGNED IN');
-      return <Profile setStatus={setStatus} setLoginBtn={setLoginBtn} />;
+      return (
+        <AuthProvider>
+          <Profile setStatus={setStatus} show={show} setShow={setShow} />;
+        </AuthProvider>
+      );
+    }
+    if (status === 'signedOut') {
+      console.log('SIGNED OUT');
+      return (
+        <AuthProvider>
+          <Login setStatus={setStatus} show={show} setShow={setShow} />;
+        </AuthProvider>
+      );
+    }
+    if (status === 'signUp') {
+      console.log('sign up page');
+      return (
+        <AuthProvider>
+          <SignUp setStatus={setStatus} show={show} setShow={setShow} />;
+        </AuthProvider>
+      );
     }
   };
 
@@ -28,9 +45,7 @@ export default function Topbar() {
           <span className="logo">ChessInfo</span>
         </div>
         <div className="topRight">
-          <Button intent="primary" className="signIn" onClick={() => getAccount()}>
-            {loginBtn}
-          </Button>
+          {getAccount()}
           {PAGES.map((tab) => {
             return (
               <Link exact to={tab.link} element={tab.icon} key={tab.id}>

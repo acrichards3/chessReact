@@ -438,3 +438,28 @@ VERSION 0.3.3 {
     - Styling for 404 page
     - Other small styling bugs
 }
+VERSION 0.3.4 {
+
+    Date Pushed: 3/26/2022
+
+    IMPROVEMENTS: 
+
+    - Created modal when clicking login button
+    - Will show appropite modal when clicking each button
+    - UI for login and account fully completed
+    - Fixed invalid key issues with firebase v9
+    - Sign up is fully functional
+    - Log in is fully functional
+    - Fixed issue where signing up would take user to profile page without being logged in
+    - Fixed issue where modal was popping up when it wasn't supposed to by lifting state to topbar and passing it down as props
+    - Login, Signup, and Logout system is fully functional!
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks *
+    - Refactor getStats.js *
+    - Error messages in console
+    - Styling for 404 page
+    - Other small styling bugs
+}

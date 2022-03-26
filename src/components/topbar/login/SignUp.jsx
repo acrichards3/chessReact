@@ -4,53 +4,55 @@ import { Button } from '@blueprintjs/core';
 import { useAuth } from '../../../contexts/AuthContext';
 import './account.css';
 
-export default function Login(props) {
+export default function SignUp(props) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const passwordConfirmRef = useRef();
+  const { signup } = useAuth();
 
   const handleClose = () => {
     props.setStatus('signedOut');
     props.setShow(false);
   };
 
-  const handleShow = () => props.setShow(true);
-
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError('Passwords do not match!');
+    }
 
     try {
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      props.setStatus('signedIn');
+      await signup(emailRef.current.value, passwordRef.current.value);
+      props.setStatus('signedOut');
     } catch {
-      setError('Failed to log in');
+      setError('Failed to create account');
     }
     setLoading(false);
   }
 
-  function handleSignup() {
-      props.setStatus('signUp');
-      props.setShow(true);
-  }
-
   return (
     <>
-      <Button intent="primary" onClick={handleShow} className="signIn">
+      {console.log('ERROR: ', error)};
+      <Button
+        intent="primary"
+        onClick={() => props.setStatus('signedOut')}
+        className="signIn"
+      >
         Login to ChessInfo
       </Button>
-
       <Modal
         show={props.show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>ChessInfo Login</Modal.Title>
+        <Modal.Header closeButton onClick={() => props.setStatus('signedOut')}>
+          <Modal.Title>Sign Up For ChessInfo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -73,20 +75,21 @@ export default function Login(props) {
                 required
               />
             </Form.Group>
-            <Button disabled={loading} intent="primary" type="submit" large>
-              Login
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                ref={passwordConfirmRef}
+                required
+              />
+            </Form.Group>
+            <Button disabled={loading} type="submit" intent="success" large>
+              Sign Up Now
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            disabled={loading}
-            intent="success"
-            large
-            onClick={handleSignup}
-          >
-            Sign Up
-          </Button>
           <Button intent="danger" onClick={handleClose} large>
             Close
           </Button>
