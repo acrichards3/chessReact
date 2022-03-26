@@ -9,8 +9,9 @@ import SearchUser from './SearchUser';
 import './dashboard.css';
 
 export default function Dashboard() {
+  
   const [timeState, setTimeState] = useState('Overall');
-  const [name, setName] = useState('Hikaru');
+  const [name, setName] = useState('hikaru');
   const [stats, setStats] = useState();
   const [whiteInfo, setWhiteInfo] = useState();
   const [blackInfo, setBlackInfo] = useState();
