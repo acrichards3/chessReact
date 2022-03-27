@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import EloChart from './charts/EloChart';
 import DataTable from './charts/DataTable';
 import WhiteWinrate from './charts/WhiteWinrate';
@@ -6,21 +6,23 @@ import BlackWinrate from './charts/BlackWinrate';
 import Stats from '../../data/getStats';
 import Openings from '../../data/getOpenings';
 import SearchUser from './SearchUser';
+import { InitContext } from '../../contexts/InitialContext';
 import './dashboard.css';
 
 export default function Dashboard() {
-  
+  const { initialUser, setInitialUser } = useContext(InitContext);
+
   const [timeState, setTimeState] = useState('Overall');
-  const [name, setName] = useState('hikaru');
+  const [name, setName] = useState(initialUser);
   const [stats, setStats] = useState();
   const [whiteInfo, setWhiteInfo] = useState();
   const [blackInfo, setBlackInfo] = useState();
   const [openingInfo, setOpeningInfo] = useState();
 
   useEffect(() => {
-    updateStats(name);
+    updateStats(initialUser);
     // eslint-disable-next-line
-  }, [timeState]);
+  }, [timeState, initialUser]);
 
   async function updateStats(user) {
     const results = await Stats(user);
@@ -28,6 +30,8 @@ export default function Dashboard() {
     setOpeningInfo(open);
     setWhiteInfo(results);
     setBlackInfo(results);
+
+    console.log(setName);
 
     const returnData = (wins, draws, losses) => {
       if (!draws) {
@@ -154,7 +158,7 @@ export default function Dashboard() {
       <div className="enterUser">
         <SearchUser
           name={name}
-          setName={setName}
+          setName={setInitialUser}
           timeState={timeState}
           setTimeState={setTimeState}
           updateStats={updateStats}

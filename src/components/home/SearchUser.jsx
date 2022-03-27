@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Form,
   FormGroup,
@@ -8,18 +8,20 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import { InitContext } from '../../contexts/InitialContext';
 import './searchUser.css';
 
 export default function SearchUser(props) {
+  const { initialUser } = useContext(InitContext);
   const [drop, setDrop] = useState(false);
-  const [stored, setStored] = useState('Hikaru')
-  
+  const [temp, setTemp] = useState('Hikaru');
+
   function handleChange(e) {
     if (e.target.value === 'Update') {
-      props.updateStats(props.name);
-      setStored(props.name);
+      props.updateStats(temp);
+      props.setName(temp);
     } else {
-      props.setName(e.target.value);
+      setTemp(e.target.value);
     }
   }
 
@@ -99,7 +101,7 @@ export default function SearchUser(props) {
           <div className="col">
             <div className="displayName">
               <h4>
-                Displaying info for Chess.com user: <strong>{stored}</strong>{' '}
+                Displaying info for Chess.com user: <strong>{initialUser}</strong>{' '}
                 (Last 90 Days)
               </h4>
             </div>

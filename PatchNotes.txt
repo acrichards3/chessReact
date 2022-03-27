@@ -480,3 +480,22 @@ VERSION 0.3.4.1 {
     - Styling for 404 page
     - Other small styling bugs
 }
+VERSION 0.3.5 {
+
+    Date Pushed: 3/26/2022
+
+    IMPROVEMENTS: 
+
+    - useContext hook sharing state between 3 components (profile, searchuser, & dashboard)
+    - Cleaned up some messy code in SearchUser.jsx 
+    - By the grace of god we have fixed the black magic of 900 pieces of state 
+
+    EXISTING BUGS / THINGS TO FIX: 
+
+    - Fix bug where draws are deducting from certain data? *
+    - If searching for user that doesn't exist, whole site breaks *
+    - Refactor getStats.js *
+    - Error messages in console
+    - Styling for 404 page
+    - Other small styling bugs
+}

@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { InitContext } from '../../../contexts/InitialContext';
 import { Modal, Form, Alert } from 'react-bootstrap';
 import { Button } from '@blueprintjs/core';
 import { useAuth } from '../../../contexts/AuthContext';
+import { StoredContext } from '../../../contexts/StoredContext';
 import './account.css';
 
 export default function Profile(props) {
   const [error, setError] = useState('');
-  const [initialUser, setInitialUser] = useState('HIKARU');
   const [temporary, setTemporary] = useState('');
   const { logout } = useAuth();
+  const { initialUser } = useContext(InitContext);
+  const { setInitialUser } = useContext(InitContext);
+  //const { stored } = useContext(StoredContext);
+  const { setStored } = useContext(StoredContext);
 
   const handleClose = () => props.setShow(false);
   const handleShow = () => props.setShow(true);
@@ -40,6 +45,7 @@ export default function Profile(props) {
     console.log('worked');
     e.preventDefault();
     setInitialUser(temporary);
+    setStored(temporary);
   }
 
   return (
