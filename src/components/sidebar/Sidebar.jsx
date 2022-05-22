@@ -11,7 +11,7 @@ export default function Sidebar() {
       <div className="sidebar">
         <div className="sidebarWrapper">
           <div className="sidebarMenu">
-            <ul className="sidebarList">
+            <ul className="sidebarList"> 
               {PAGES.map((tab) => {
                 if (tab.above) {
                   if (tab.category === 'Information') {

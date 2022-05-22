@@ -5,7 +5,7 @@ export default function Stats(user) {
   console.log('SHAGGY', user);
   return chessAPI
     .getPlayerMonthlyArchives(user)
-    .then(async function (response) {
+    .then(async function (response) { 
       const arr = await response.body.archives;
       const recents = [];
       const results = [];
@@ -24,7 +24,7 @@ export default function Stats(user) {
         for (let i = 0; i < recents.length; i++) {
           const response = await fetch(recents[i]);
           const jsonResponse = await response.json();
-          results.push(...jsonResponse.games);
+          results.push(...jsonResponse.games); 
         }
         console.log(results, 'RUH ROH RAGGY');
         return results;

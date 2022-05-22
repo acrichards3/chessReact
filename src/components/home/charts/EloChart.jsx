@@ -5,7 +5,7 @@ import './eloChart.css';
 
 export default function EloChart(props) {
 
-  console.log(props.stats, 'WHAT IS THIS???????');
+  console.log(props.stats, 'WHAT IS THIS???????'); 
   
   const eloChange = (rating) => {
     if (rating) {

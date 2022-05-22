@@ -7,7 +7,7 @@ export default function Openings(user) {
   console.log('SCOOBY', user);
   return chessAPI
     .getPlayerMonthlyArchives(user)
-    .then(async function (response) {
+    .then(async function (response) { 
       const arr = response.body.archives;
       const recents = [];
       const results = [];
