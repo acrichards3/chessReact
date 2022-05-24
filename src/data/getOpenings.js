@@ -4,7 +4,10 @@ const ChessWebAPI = require('chess-web-api');
 const chessAPI = new ChessWebAPI();
 
 export default function Openings(user) {
-  console.log('SCOOBY', user);
+  //console.log('SCOOBY', user);
+
+  //console.log(user, 'testing tesgin');
+
   return chessAPI
     .getPlayerMonthlyArchives(user)
     .then(async function (response) { 
@@ -30,6 +33,7 @@ export default function Openings(user) {
       for (let i = 0; i < recents.length; i++) {
         results.push(getJson(i));
       }
+
 
       const games1 = (await results[0]).games.concat((await results[1]).games);
       const games2 = games1.concat((await results[2]).games);
@@ -136,7 +140,7 @@ export default function Openings(user) {
       }
 
       
-      console.log('Opening Info', allOpenings);
+      //console.log('Opening Info', allOpenings);
       return allOpenings;
     })
     .catch(function (err) {

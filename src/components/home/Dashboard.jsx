@@ -25,13 +25,18 @@ export default function Dashboard() {
   }, [timeState, initialUser]);
 
   async function updateStats(user) {
-    const results = await Stats(user);
-    const open = await Openings(user);
+    let results = await Stats(user);
+    let open = await Openings(user);
+
+    if (!open || !results) {
+      results = await Stats('hikaru');
+      open = await Openings('hikaru');
+      console.log('This user doesnt exist!');
+    }
+
     setOpeningInfo(open);
     setWhiteInfo(results);
     setBlackInfo(results);
-
-    console.log(setName);
 
     const returnData = (wins, draws, losses) => {
       if (!draws) {
