@@ -23,3 +23,10 @@
 .srch {
     padding-bottom: 7px;
 }
+
+.isValid {
+    display: flex;
+    justify-content: center;
+    color: red;
+    background-color: #FFCCCB;
+}
