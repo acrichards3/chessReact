@@ -43,6 +43,8 @@ export default function SearchUser(props) {
 
       if (!results) {
         setValidUser(false);
+      } else {
+        setValidUser(true);
       }
     };
 
