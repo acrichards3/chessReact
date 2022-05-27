@@ -13,7 +13,7 @@ export default function Dashboard() {
   const { initialUser, setInitialUser } = useContext(InitContext);
 
   const [timeState, setTimeState] = useState('Overall');
-  const [name, setName] = useState(initialUser);
+  const [name] = useState(initialUser);
   const [stats, setStats] = useState();
   const [whiteInfo, setWhiteInfo] = useState();
   const [blackInfo, setBlackInfo] = useState();
