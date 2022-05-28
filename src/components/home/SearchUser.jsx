@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Form,
   FormGroup,
@@ -8,12 +8,14 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import Stats from '../../data/getStats';
 import { InitContext } from '../../contexts/InitialContext';
 import './searchUser.css';
 
 export default function SearchUser(props) {
   const { initialUser } = useContext(InitContext);
   const [drop, setDrop] = useState(false);
+  const [validUser, setValidUser] = useState(true);
   const [temp, setTemp] = useState('Hikaru');
 
   function handleChange(e) {
@@ -33,6 +35,37 @@ export default function SearchUser(props) {
 
   const toggleDropdown = () => {
     setDrop((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    const isValid = async (user) => {
+      let results = await Stats(user);
+
+      if (!results) {
+        setValidUser(false);
+      } else {
+        setValidUser(true);
+      }
+    };
+
+    isValid(initialUser);
+  }, [initialUser, validUser]);
+
+  const setErr = (boolean) => {
+    if (!boolean) {
+      return (
+        <h4 className="isValid">
+          Error: Please enter a valid Chess.com username
+        </h4>
+      );
+    } else {
+      return (
+        <h4>
+          Displaying info for Chess.com user: <strong>{initialUser}</strong>{' '}
+          (Last 90 Days)
+        </h4>
+      );
+    }
   };
 
   return (
@@ -99,12 +132,7 @@ export default function SearchUser(props) {
         </div>
         <div className="row">
           <div className="col">
-            <div className="displayName">
-              <h4>
-                Displaying info for Chess.com user: <strong>{initialUser}</strong>{' '}
-                (Last 90 Days)
-              </h4>
-            </div>
+            <div className="displayName">{setErr(validUser)}</div>
           </div>
         </div>
       </div>

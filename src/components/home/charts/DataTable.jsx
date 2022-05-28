@@ -4,7 +4,6 @@ import { DataGrid } from '@mui/x-data-grid';
 export default function DataTable(props) {
   const rows = () => {
     const data = props.openingInfo;
-    //console.log('WHAT DISSSSSSSSS', data);
 
     if (data) {
       if (props.timeState === 'Rapid') {

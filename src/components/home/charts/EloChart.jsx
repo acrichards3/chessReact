@@ -5,7 +5,11 @@ import './eloChart.css';
 
 export default function EloChart(props) {
 
+<<<<<<< HEAD
   //console.log(props.stats, 'WHAT IS THIS???????');
+=======
+  //console.log(props.stats, 'WHAT IS THIS???????'); 
+>>>>>>> 6ba50fb5862f7fb65d8db25fbf633553d1854a11
   
   const eloChange = (rating) => {
     if (rating) {

@@ -13,7 +13,7 @@ export default function Dashboard() {
   const { initialUser, setInitialUser } = useContext(InitContext);
 
   const [timeState, setTimeState] = useState('Overall');
-  const [name, setName] = useState(initialUser);
+  const [name] = useState(initialUser);
   const [stats, setStats] = useState();
   const [whiteInfo, setWhiteInfo] = useState();
   const [blackInfo, setBlackInfo] = useState();
@@ -25,19 +25,27 @@ export default function Dashboard() {
   }, [timeState, initialUser]);
 
   async function updateStats(user) {
+<<<<<<< HEAD
     const results = await Stats(user);
     const open = await Openings(user);
 
     if (!user) {
       console.log('user does not exist');
       return;
+=======
+    let results = await Stats(user);
+    let open = await Openings(user);
+
+    if (!open || !results) {
+      results = await Stats('hikaru');
+      open = await Openings('hikaru');
+      console.log('This user doesnt exist!');
+>>>>>>> 6ba50fb5862f7fb65d8db25fbf633553d1854a11
     }
 
     setOpeningInfo(open);
     setWhiteInfo(results);
     setBlackInfo(results);
-
-    console.log(setName);
 
     const returnData = (wins, draws, losses) => {
       if (!draws) {
