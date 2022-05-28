@@ -3,16 +3,17 @@ import { InitContext } from '../../../contexts/InitialContext';
 import { Modal, Form, Alert } from 'react-bootstrap';
 import { Button } from '@blueprintjs/core';
 import { useAuth } from '../../../contexts/AuthContext';
+import { getAuth, updateProfile } from 'firebase/auth';
 import { StoredContext } from '../../../contexts/StoredContext';
 import './account.css';
 
 export default function Profile(props) {
+  const auth = getAuth();
   const [error, setError] = useState('');
   const [temporary, setTemporary] = useState('');
   const { logout } = useAuth();
   const { initialUser } = useContext(InitContext);
   const { setInitialUser } = useContext(InitContext);
-  //const { stored } = useContext(StoredContext);
   const { setStored } = useContext(StoredContext);
 
   const handleClose = () => props.setShow(false);
@@ -41,11 +42,12 @@ export default function Profile(props) {
     setTemporary(e.target.value);
   }
 
-  function handleUpdate(e) {
+  function handleSubmit(e) {
     console.log('worked');
     e.preventDefault();
     setInitialUser(temporary);
     setStored(temporary);
+    updateProfile(auth.currentUser, { displayName: temporary });
   }
 
   return (
@@ -63,7 +65,7 @@ export default function Profile(props) {
         <Modal.Header closeButton>{checkUser()}</Modal.Header>
         <Modal.Body>
           {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleUpdate}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Username</Form.Label>
               <Form.Control

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Topbar from './components/topbar/Topbar';
-import Sidebar from './components/sidebar/Sidebar';
+import Navbar from './components/navigation/Navbar';
 import Home from './pages/Home';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
@@ -25,7 +25,7 @@ function App() {
         <div>
           <Topbar />
           <div className="sidenav">
-            <Sidebar />
+            <Navbar />
             <div className="container">
               <div className="row">
                 <div className="col">

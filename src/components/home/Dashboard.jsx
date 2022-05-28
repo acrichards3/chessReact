@@ -27,6 +27,12 @@ export default function Dashboard() {
   async function updateStats(user) {
     const results = await Stats(user);
     const open = await Openings(user);
+
+    if (!user) {
+      console.log('user does not exist');
+      return;
+    }
+
     setOpeningInfo(open);
     setWhiteInfo(results);
     setBlackInfo(results);

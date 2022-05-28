@@ -12,6 +12,11 @@ export default function Openings(user) {
       const recents = [];
       const results = [];
 
+      if (!arr) {
+        console.log('user doesnt exist');
+        return;
+      }
+
       for (let i = 0; i < arr.length; i++) {
         if (
           i === arr.length - 1 ||
@@ -136,7 +141,7 @@ export default function Openings(user) {
       }
 
       
-      console.log('Opening Info', allOpenings);
+      //console.log('Opening Info', allOpenings);
       return allOpenings;
     })
     .catch(function (err) {

@@ -10,6 +10,11 @@ export default function Stats(user) {
       const recents = [];
       const results = [];
 
+      if (!arr) {
+        console.log('user doesnt exist');
+        return;
+      }
+
       for (let i = 0; i < arr.length; i++) {
         if (
           i === arr.length - 1 ||
@@ -26,7 +31,7 @@ export default function Stats(user) {
           const jsonResponse = await response.json();
           results.push(...jsonResponse.games);
         }
-        console.log(results, 'RUH ROH RAGGY');
+        //console.log(results, 'RUH ROH RAGGY');
         return results;
       }
 
@@ -77,7 +82,7 @@ export default function Stats(user) {
         numOfGames: 0,
       };
 
-      console.log('ALL GAMES', games);
+      //console.log('ALL GAMES', games);
 
       for (let i = 0; i < games.length; i++) {
         const currentGame = games[i];
@@ -282,7 +287,7 @@ export default function Stats(user) {
 
       const information = [obj, winrates];
 
-      console.log('STATS DATA', information);
+      //console.log('STATS DATA', information);
 
       return information;
     })
